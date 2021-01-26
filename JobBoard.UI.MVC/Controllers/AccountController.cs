@@ -146,7 +146,7 @@ namespace JobBoard.UI.MVC.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(RegisterViewModel model)
+        public async Task<ActionResult> Register(RegisterViewModel model, HttpPostedFileBase resumeFile)
         {
             if (ModelState.IsValid)
             {
@@ -154,6 +154,7 @@ namespace JobBoard.UI.MVC.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                    //--TODO: Process file upload here
                     #region Custom user details
                     UserDetail newUserDetails = new UserDetail
                     {

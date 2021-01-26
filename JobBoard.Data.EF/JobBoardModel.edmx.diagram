@@ -7,7 +7,6 @@
       <Diagram DiagramId="f518cc544fee431d9730df48ab7c28b5" Name="Diagram1">
         <EntityTypeShape EntityType="JobBoardModel.Application" Width="1.5" PointX="6" PointY="1.25" IsExpanded="true" />
         <EntityTypeShape EntityType="JobBoardModel.ApplicationStatus" Width="2.5" PointX="3" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="JobBoardModel.AspNetUser" Width="1.5" PointX="0.625" PointY="2.375" IsExpanded="true" />
         <EntityTypeShape EntityType="JobBoardModel.Location" Width="1.5" PointX="8" PointY="3.625" IsExpanded="true" />
         <EntityTypeShape EntityType="JobBoardModel.OpenPosition" Width="1.5" PointX="10.125" PointY="2.25" IsExpanded="true" />
         <EntityTypeShape EntityType="JobBoardModel.Position" Width="1.5" PointX="13.125" PointY="1.625" IsExpanded="true" />
@@ -15,7 +14,6 @@
         <AssociationConnector Association="JobBoardModel.FK_Applications_ApplicationStatus" ManuallyRouted="false" />
         <AssociationConnector Association="JobBoardModel.FK_Applications_OpenPositions" ManuallyRouted="false" />
         <AssociationConnector Association="JobBoardModel.FK_Applications_UserDetails" ManuallyRouted="false" />
-        <AssociationConnector Association="JobBoardModel.FK_UserDetails_AspNetUsers" ManuallyRouted="false" />
         <AssociationConnector Association="JobBoardModel.FK_Locations_UserDetails" ManuallyRouted="false" />
         <AssociationConnector Association="JobBoardModel.FK_OpenPositions_Locations" ManuallyRouted="false" />
         <AssociationConnector Association="JobBoardModel.FK_OpenPositions_Positions" ManuallyRouted="false" />

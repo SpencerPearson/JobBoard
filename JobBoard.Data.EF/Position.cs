@@ -12,10 +12,10 @@ namespace JobBoard.Data.EF
     using System;
     using System.Collections.Generic;
     
-    public partial class UserDetail
+    public partial class Position
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public UserDetail()
+        public Position()
         {
             this.OpenPositions = new HashSet<OpenPosition>();
         }

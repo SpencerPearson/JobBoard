@@ -27,6 +27,6 @@ namespace JobBoard.Data.EF
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Application> Applications { get; set; }
         public virtual Location Location { get; set; }
-        public virtual UserDetail Position { get; set; }
+        public virtual Position Position { get; set; }
     }
 }

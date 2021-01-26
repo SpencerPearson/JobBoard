@@ -62,26 +62,6 @@ namespace JobBoard.Data.EF//Metadata
 
     #endregion
 
-    #region AspNetUser Metadata
-
-    public class AspNetUserMetadata
-    {
-        [Required]
-        public string Email { get; set; }
-
-        [Required]
-        [Display(Name = "Phone Number")]
-        [DataType(DataType.PhoneNumber)]
-        public string PhoneNumber { get; set; }
-        
-    }
-    [MetadataType(typeof(AspNetUserMetadata))]
-    public partial class AspNetUser
-    {
-
-    }
-    #endregion
-
     #region Location Metadata
     public class LocationMetadata
     {
@@ -155,7 +135,7 @@ namespace JobBoard.Data.EF//Metadata
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
 
-        [Required]
+        //[Required]
         [Display(Name = "Resume")]
         public string ResumeFileName { get; set; }
 
