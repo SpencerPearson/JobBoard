@@ -76,7 +76,7 @@ namespace JobBoard.Data.EF//Metadata
         [StringLength(2, ErrorMessage = "Please use the 2 character state abbreviation.")]
         public string State { get; set; }
 
-        [Display(Name = "Manager ID")]
+        [Display(Name = "Hiring Manager")]
         public string ManagerId { get; set; }
     }
 
@@ -144,6 +144,8 @@ namespace JobBoard.Data.EF//Metadata
     [MetadataType(typeof(UserDetailMetadata))]
     public partial class UserDetail
     {
+        
+        public string FullName { get { return FirstName + " " + LastName; } }
 
     }
     #endregion

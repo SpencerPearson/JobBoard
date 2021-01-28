@@ -3,6 +3,7 @@ using JobBoard.UI.MVC.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
@@ -154,7 +155,27 @@ namespace JobBoard.UI.MVC.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    //--TODO: Process file upload here
+                    #region File Upload
+                    string file = "NoResume.pdf";
+
+                    if (resumeFile != null)
+                    {
+                        file = resumeFile.FileName;
+                        string ext = file.Substring(file.LastIndexOf('.'));
+                        //string[] goodExts = { ".pdf", ".doc", ".docx" };
+
+                        if (ext.ToLower() == ".pdf")
+                        {
+                            if (resumeFile.ContentLength <= 4194304)
+                            {
+                                file = Guid.NewGuid() + ext;
+                                resumeFile.SaveAs(Server.MapPath("~/Content/resumes/" + file));
+
+                            }
+                            model.ResumeFileName = file;
+                        }
+                    }
+                    #endregion
                     #region Custom user details
                     UserDetail newUserDetails = new UserDetail
                     {

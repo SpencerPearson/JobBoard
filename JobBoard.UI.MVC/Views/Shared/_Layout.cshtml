@@ -40,29 +40,21 @@
 
     <!-- ======= Header ======= -->
     <header id="header" class="fixed-top ">
-        <div class="container d-flex align-items-center">
+        <div class="container d-flex align-items-center" id="main-menu">
 
-            <h1 class="logo mr-auto"><a href="index.html">Arsha</a></h1>
+            @*<h1 class="logo mr-auto"><a href="index.html">Arsha</a></h1>*@
             <!-- Uncomment below if you prefer to use an image logo -->
-            <!-- <a href="index.html" class="logo mr-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+             <a href="@Url.Action("Index", "Home")" class="logo mr-auto"><img src="~/Content/img/Rocket-Fuel-Coffee-wide-white.png" alt="" class="img-fluid"></a>
 
             <nav class="nav-menu d-none d-lg-block">
                 <ul>
-                    <li class="active"><a href="index.html">Home</a></li>
+                    <li class="active"><a href="@Url.Action("Index", "Home")">Home</a></li>
                     <li><a href="#about">About</a></li>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#portfolio">Portfolio</a></li>
+                    <li><a href="@Url.Action("Index", "Locations")">Locations</a></li>
+                    <li><a href="@Url.Action("Index", "UserDetails")">Resume</a></li>
                     <li><a href="#team">Team</a></li>
-                    <li class="drop-down">
-                        <a href="">Drop Down</a>
-                        <ul>
-                            <li><a href="#">Drop Down 1</a></li>
-                            <li><a href="#">Drop Down 2</a></li>
-                            <li><a href="#">Drop Down 3</a></li>
-                            <li><a href="#">Drop Down 4</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="@Url.Action("Index", "Positions")">Positions</a></li>
+                    <li><a href="@Url.Action("Contact", "Home")">Contact</a></li>
                     <li>@Html.Partial("_LoginPartial")</li>
                 </ul>
             </nav><!-- .nav-menu -->
@@ -79,22 +71,22 @@
                 <div class="row">
 
                     <div class="col-lg-3 col-md-6 footer-contact">
-                        <h3>Arsha</h3>
+                        <img src="~/Content/img/Rocket-Fuel-Coffee-Smol.png" alt="Rocket Fuel Coffee logo" />
                         <p>
-                            A108 Adam Street <br>
-                            New York, NY 535022<br>
+                            1776 Bean Blvd. <br>
+                            Kansas City, MO 64108<br>
                             United States <br><br>
-                            <strong>Phone:</strong> +1 5589 55488 55<br>
-                            <strong>Email:</strong> info@example.com<br>
+                            <strong>Phone:</strong> (816) 858-5558<br>
+                            <strong>Email:</strong> info@rocketfuelcoffee.com<br>
                         </p>
                     </div>
 
                     <div class="col-lg-3 col-md-6 footer-links">
                         <h4>Useful Links</h4>
                         <ul>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="@Url.Action("Index", "Home")">Home</a></li>
                             <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Services</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="@Url.Action("Index", "Locations")">Locations</a></li>
                             <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
                             <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
                         </ul>

@@ -1,11 +1,11 @@
 ﻿@model JobBoard.UI.MVC.Models.VerifyPhoneNumberViewModel
 @{
-    ViewBag.Title = "Verify Phone Number";
+    ViewBag.Title = "Verify Phone Number" + User.Identity.Name;
 }
 
-<h2>@ViewBag.Title.</h2>
+<h2 class="view-title">@ViewBag.Title</h2>
 
-@using (Html.BeginForm("VerifyPhoneNumber", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+@using (Html.BeginForm("VerifyPhoneNumber", "Manage", FormMethod.Post, new { @class = "form-horizontal detailsShape", role = "form" }))
 {
     @Html.AntiForgeryToken()
     @Html.Hidden("phoneNumber", @Model.PhoneNumber)
@@ -21,7 +21,7 @@
     </div>
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <input type="submit" class="btn btn-default" value="Submit" />
+            <input type="submit" class="btn btn-success" value="Submit" />
         </div>
     </div>
 }
