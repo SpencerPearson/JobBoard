@@ -1,0 +1,33 @@
+﻿@model JobBoard.Data.EF.OpenPosition
+
+@{
+    ViewBag.Title = "Job Details: " + Model.Position.Title;
+}
+<br />
+<h2 class="view-title">@ViewBag.Title</h2>
+
+<div>
+    <dl class="dl-horizontal detailsShape">
+        <dt>
+            @Html.DisplayNameFor(model => model.Location.StoreNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Location.StoreNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Position.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Position.Title)
+        </dd>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.LocationId }, new { @class = "btn btn-orange" }) &ensp;
+        @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-dark" })
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.OpenPositionId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

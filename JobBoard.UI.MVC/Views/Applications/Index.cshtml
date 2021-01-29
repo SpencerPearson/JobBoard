@@ -8,15 +8,15 @@
 
 
 <table class="table table-striped detailsShape">
-    <p class="offset-3">
-    @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-success" })
-    </p>
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.ApplicationDate)
+            @Html.DisplayNameFor(model => model.UserDetail.FullName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ManagerNotes)
+            @Html.DisplayNameFor(model => model.OpenPositionId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ApplicationDate)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.ResumeFilename)
@@ -24,22 +24,19 @@
         <th>
             @Html.DisplayNameFor(model => model.ApplicationStatus1.StatusName)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.OpenPositionId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UserDetail.FirstName)
-        </th>
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.ApplicationDate)
+            @Html.DisplayFor(modelItem => item.UserDetail.FullName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.ManagerNotes)
+            @Html.DisplayFor(modelItem => item.OpenPositionId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ApplicationDate)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.ResumeFilename)
@@ -48,15 +45,9 @@
             @Html.DisplayFor(modelItem => item.ApplicationStatus1.StatusName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.OpenPositionId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UserDetail.FirstName)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ApplicationId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ApplicationId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ApplicationId })
+            @Html.ActionLink("Edit", "Edit", new { id = item.ApplicationId }) |
+            @Html.ActionLink("Details", "Details", new { id = item.ApplicationId }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.ApplicationId })
         </td>
     </tr>
 }

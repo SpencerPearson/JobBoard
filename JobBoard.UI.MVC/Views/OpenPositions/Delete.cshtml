@@ -1,0 +1,37 @@
+﻿@model JobBoard.Data.EF.OpenPosition
+
+@{
+    ViewBag.Title = "Confirm Delete: " + Model.Position.Title + " at store " + Model.Location.StoreNumber;
+}
+<br />
+<h2 class="view-title">@ViewBag.Title</h2>
+<div>
+    <dl class="dl-horizontal detailsShape">
+        <dt>
+            @Html.DisplayNameFor(model => model.Location.StoreNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Location.StoreNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Position.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Position.Title)
+        </dd>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-custom-danger" /> &ensp;
+                @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-orange" })
+            </div>
+        }
+    </dl>
+
+
+</div>

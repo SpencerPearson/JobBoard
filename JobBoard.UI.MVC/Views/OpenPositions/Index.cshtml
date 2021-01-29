@@ -1,0 +1,46 @@
+﻿@model IEnumerable<JobBoard.Data.EF.OpenPosition>
+
+@{
+    ViewBag.Title = "Current Positions";
+}
+<br />
+<h2 class="view-title">@ViewBag.Title</h2>
+<h5 class="view-title">Click the job title to see more details and apply.</h5>
+
+<p class="offset-3">
+    @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-success" })
+</p>
+<table class="table detailsShape">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Location.StoreNumber)
+        </th>
+        <th>        
+                @Html.DisplayNameFor(model => model.Position.Title)
+        </th>
+        <th class="text-right">Edit | Delete</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Location.StoreNumber)
+        </td>
+        <td class="style-link">
+            <a href="@Url.Action("Details", "OpenPositions", new { id = item.OpenPositionId })">
+                @Html.DisplayFor(modelItem => item.Position.Title)
+                </a>
+        </td>
+        <td class="text-right">
+            <a href="@Url.Action("Edit", "OpenPositions", new { id = item.OpenPositionId })">
+                <i class="icofont-edit" aria-hidden="true"></i>
+            </a>
+            &emsp;
+            <a href="@Url.Action("Delete", "OpenPositions", new { id = item.OpenPositionId })">
+                <i class="icofont-bin" aria-hidden="true"></i>
+            </a>
+        </td>
+    </tr>
+}
+
+</table>

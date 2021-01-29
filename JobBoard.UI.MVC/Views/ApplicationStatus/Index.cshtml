@@ -1,0 +1,39 @@
+﻿@model IEnumerable<JobBoard.Data.EF.ApplicationStatus>
+
+@{
+    ViewBag.Title = "Application Statuses";
+}
+<br />
+<h2 class="view-title">@ViewBag.Title</h2>
+
+<p class="offset-3">
+    @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-success"})
+</p>
+<table class="table detailsShape">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.StatusName)
+        </th>
+        <th class="text-right">Edit | Delete</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td class="style-link">
+            <a href="@Url.Action("Details", "ApplicationStatus", new { id = item.ApplicationStatusId })">
+                @Html.DisplayFor(modelItem => item.StatusName)
+            </a>
+        </td>
+        <td class="text-right">
+            <a href="@Url.Action("Edit", "ApplicationStatus", new { id = item.ApplicationStatusId })">
+                <i class="icofont-edit" aria-hidden="true"></i>
+            </a>
+            &emsp;
+            <a href="@Url.Action("Delete", "ApplicationStatus", new { id = item.ApplicationStatusId })">
+                <i class="icofont-bin" aria-hidden="true"></i>
+            </a>
+        </td>
+    </tr>
+}
+
+</table>

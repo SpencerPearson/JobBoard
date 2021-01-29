@@ -1,0 +1,30 @@
+﻿@model JobBoard.Data.EF.ApplicationStatus
+
+@{
+    ViewBag.Title = "Details For \"" + Model.StatusName + "\" Status";
+}
+<br />
+<h2 class="view-title">@ViewBag.Title</h2>
+
+<div>
+    <dl class="dl-horizontal detailsShape">
+        <dt>
+            @Html.DisplayNameFor(model => model.StatusName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StatusName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StatusDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StatusDescription)
+        </dd>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.ApplicationStatusId }, new { @class = "btn btn-orange" }) &ensp;
+        @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-dark" })
+    </dl>
+</div>
+

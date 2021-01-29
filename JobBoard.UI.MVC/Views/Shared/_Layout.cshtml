@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>Rocket Fuel Coffee Jobs | @ViewBag.Title</title>
+    <title>Rocket Fuel Jobs | @ViewBag.Title</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
@@ -53,8 +53,17 @@
                     <li><a href="@Url.Action("Index", "Locations")">Locations</a></li>
                     <li><a href="@Url.Action("Index", "UserDetails")">Resume</a></li>
                     <li><a href="#team">Team</a></li>
-                    <li><a href="@Url.Action("Index", "Positions")">Positions</a></li>
+                    <li><a href="#">Jobs</a></li>
                     <li><a href="@Url.Action("Contact", "Home")">Contact</a></li>
+                    <li class="drop-down">
+                        <a href="">Admin Tools</a>
+                        <ul>
+                            <li><a href="@Url.Action("Index", "ApplicationStatus")">Application Statuses</a></li>
+                            <li><a href="@Url.Action("Index", "Positions")">Positions</a></li>
+                            <li><a href="@Url.Action("Index", "OpenPositions")">Open Positions</a></li>
+                            <li><a href="#">Drop Down 4</a></li>
+                        </ul>
+                    </li>
                     <li>@Html.Partial("_LoginPartial")</li>
                 </ul>
             </nav><!-- .nav-menu -->

@@ -1,0 +1,36 @@
+﻿@model JobBoard.Data.EF.ApplicationStatus
+
+@{
+    ViewBag.Title = "Confirm Delete: \"" + Model.StatusName + "\" Status";
+}
+<br />
+<h2 class="view-title">@ViewBag.Title</h2>
+<div>
+    <dl class="dl-horizontal detailsShape">
+        <dt>
+            @Html.DisplayNameFor(model => model.StatusName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StatusName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StatusDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StatusDescription)
+        </dd>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <input type="submit" value="DELETE" style="font-weight: bold;" class="btn btn-custom-danger" />
+                @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-orange" })
+            </div>
+        }
+    </dl>
+
+</div>
