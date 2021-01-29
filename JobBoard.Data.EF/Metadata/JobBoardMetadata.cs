@@ -10,7 +10,7 @@ namespace JobBoard.Data.EF//Metadata
     #region Application Metadata
     public class ApplicationMetadata
     {
-        
+
         [Required]
         [Display(Name = "Position")]
         public int OpenPositionId { get; set; }
@@ -27,20 +27,17 @@ namespace JobBoard.Data.EF//Metadata
         [Display(Name = "Manager Notes")]
         [UIHint("MultilineText")]
         public string ManagerNotes { get; set; }
-
         
         [Display(Name = "Application Status")]
         public int ApplicationStatus { get; set; }
 
         [Display(Name = "Resume")]
         public string ResumeFilename { get; set; }
+    }
+    [MetadataType(typeof(ApplicationMetadata))]
+    public partial class Application
+    {
 
-        [MetadataType(typeof(ApplicationMetadata))]
-        public partial class Application
-        {
-
-        }
-        
     }
     #endregion
 
@@ -122,6 +119,11 @@ namespace JobBoard.Data.EF//Metadata
 
         }
     }
+    [MetadataType(typeof(PositionMetadata))]
+    public partial class Position
+    {
+
+    }
     #endregion
 
     #region UserDetail Metadata
@@ -144,7 +146,7 @@ namespace JobBoard.Data.EF//Metadata
     [MetadataType(typeof(UserDetailMetadata))]
     public partial class UserDetail
     {
-        
+
         public string FullName { get { return FirstName + " " + LastName; } }
 
     }

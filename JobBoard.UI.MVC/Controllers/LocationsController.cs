@@ -72,12 +72,10 @@ namespace JobBoard.UI.MVC.Controllers
         public ActionResult Create()
         {
             #region Get Managers
-
             //get all users in a role
             var role = RoleManager.FindByName("Manager");
             // Get the list of Users in this Role
             var users = new List<ApplicationUser>();
-
             // Get the list of Users in this Role
             foreach (var user in UserManager.Users.ToList())
             {
@@ -93,7 +91,6 @@ namespace JobBoard.UI.MVC.Controllers
                 var man = db.UserDetails.Where(u => u.UserId == user.Id).Single();
                 managers.Add(man);
             }
-
             #endregion
 
             ViewBag.ManagerId = new SelectList(managers, "UserId", "FullName");
@@ -156,7 +153,8 @@ namespace JobBoard.UI.MVC.Controllers
             }
 
             #endregion
-            ViewBag.ManagerId = new SelectList(db.UserDetails, "UserId", "FullName", location.ManagerId);
+            ViewBag.ManagerId = new SelectList(managers, "UserId", "FullName", location.ManagerId);
+
             return View(location);
         }
 

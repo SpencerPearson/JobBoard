@@ -33,7 +33,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.LastName)
             </td>
-            <td class="resume-link">
+            <td class="style-link">
                 <a href="@Url.Action("Details", "UserDetails", new { id = item.UserId })">
                     @Html.DisplayFor(modelItem => item.ResumeFileName)
                 </a>

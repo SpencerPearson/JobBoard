@@ -1904,9 +1904,13 @@ label {
 .table a:hover {
     color: #EE9E0A;
 }
-.resume-link a {
+.style-link a {
     text-decoration: underline;
 }
 #main-menu {
     margin-left: 0;
+}
+textarea {
+    min-height: 7em;
+    resize: none;
 }

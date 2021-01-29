@@ -6,34 +6,36 @@
 <br />
 <h2 class="view-title">@ViewBag.Title</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+
 <table class="table table-striped detailsShape">
+    <p class="offset-md-2 col-md-2 text-center">
+        @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-success" })
+    </p>
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Title)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.JobDescription)
-        </th>
-        <th></th>
+        <th class="text-right">Edit | Delete</th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.JobDescription)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.PositionId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.PositionId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.PositionId })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td class="style-link">
+                <a href="@Url.Action("Details", "Positions", new { id = item.PositionId })">
+                    @Html.DisplayFor(modelItem => item.Title)
+                </a>
+            </td>
+            <td class="text-right">
+                <a href="@Url.Action("Edit", "Positions", new { id = item.PositionId })">
+                    <i class="icofont-edit" aria-hidden="true"></i>
+                </a>
+                &emsp;
+                <a href="@Url.Action("Delete", "Positions", new { id = item.PositionId })">
+                    <i class="icofont-bin" aria-hidden="true"></i>
+                </a>
+            </td>
+        </tr>
+    }
 
 </table>
