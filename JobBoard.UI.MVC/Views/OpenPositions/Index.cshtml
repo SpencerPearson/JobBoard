@@ -1,22 +1,43 @@
 ﻿@model IEnumerable<JobBoard.Data.EF.OpenPosition>
 
 @{
-    ViewBag.Title = "Current Positions";
+    ViewBag.Title = "Available Positions";
 }
 <br />
 <h2 class="view-title">@ViewBag.Title</h2>
 <h5 class="view-title">Click the job title to see more details and apply.</h5>
+<br />
+<div class="row">
+    <p class="offset-md-2 col-md-2 text-center">
+        @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-success" })
+    </p>
+    <div class="col-md-8 text-left">
+        <form method="get" action="/OpenPositions/Index" class="form-horizontal">
+            <div class="row">
+                <div class="col-md-2 text-right">
+                    <label for="cityFilter">Filter by City:</label>
+                </div>
+                <div class="col-md-4">
+                    @Html.DropDownList("CityFilter", null, "(Show All)", htmlAttributes: new { @class = "form-control" })
+                </div>
+                <div class="col-md-3">
+                    <input type="submit" value="Filter" class="btn btn-orange" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
 
-<p class="offset-3">
-    @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-success" })
-</p>
-<table class="table detailsShape">
+<table class="table table-striped detailsShape">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Location.StoreNumber)
         </th>
         <th>        
                 @Html.DisplayNameFor(model => model.Position.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Location.City)
         </th>
         <th class="text-right">Edit | Delete</th>
     </tr>
@@ -30,6 +51,9 @@
             <a href="@Url.Action("Details", "OpenPositions", new { id = item.OpenPositionId })">
                 @Html.DisplayFor(modelItem => item.Position.Title)
                 </a>
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Location.City)
         </td>
         <td class="text-right">
             <a href="@Url.Action("Edit", "OpenPositions", new { id = item.OpenPositionId })">

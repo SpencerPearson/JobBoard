@@ -15,10 +15,21 @@ namespace JobBoard.UI.MVC.Controllers
         private JobBoardEntities db = new JobBoardEntities();
 
         // GET: OpenPositions
-        public ActionResult Index()
+        public ActionResult Index(string cityFilter)
         {
-            var openPositions = db.OpenPositions.Include(o => o.Location).Include(o => o.Position);
-            return View(openPositions.ToList());
+            ViewBag.CityFilter = new SelectList(db.OpenPositions.Select(x => x.Location.City).Distinct());
+
+            if (String.IsNullOrEmpty(cityFilter))
+            {
+                var openPositions = db.OpenPositions.Include(o => o.Location).Include(o => o.Position);
+                return View(openPositions.ToList());
+            }
+            else
+            {
+                List<OpenPosition> selectCity = db.OpenPositions.Where(o => o.Location.City.Contains(cityFilter)).ToList();
+                return View(selectCity);
+            }
+            
         }
 
         // GET: OpenPositions/Details/5

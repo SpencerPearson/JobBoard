@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -15,7 +16,8 @@
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Jost:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
-
+    <!-- Adobe Fonts -->
+    <link rel="stylesheet" href="https://use.typekit.net/old3aqc.css">
     <!-- Vendor CSS Files -->
     <link href="~/Content/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="~/Content/vendor/icofont/icofont.min.css" rel="stylesheet">
@@ -49,22 +51,38 @@
             <nav class="nav-menu d-none d-lg-block">
                 <ul>
                     <li class="active"><a href="@Url.Action("Index", "Home")">Home</a></li>
-                    <li><a href="#about">About</a></li>
+                    <li><a href="@Url.Action("About", "Home")">About</a></li>
                     <li><a href="@Url.Action("Index", "Locations")">Locations</a></li>
                     <li><a href="@Url.Action("Index", "UserDetails")">Resume</a></li>
-                    <li><a href="#team">Team</a></li>
-                    <li><a href="#">Jobs</a></li>
+                    <li><a href="@Url.Action("Index", "OpenPositions")">Jobs</a></li>
+
                     <li><a href="@Url.Action("Contact", "Home")">Contact</a></li>
-                    <li class="drop-down">
-                        <a href="">Admin Tools</a>
-                        <ul>
-                            <li><a href="@Url.Action("Index", "ApplicationStatus")">Application Statuses</a></li>
-                            <li><a href="@Url.Action("Index", "Positions")">Positions</a></li>
-                            <li><a href="@Url.Action("Index", "OpenPositions")">Open Positions</a></li>
-                            <li><a href="#">Drop Down 4</a></li>
-                        </ul>
-                    </li>
-                    <li>@Html.Partial("_LoginPartial")</li>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <li class="drop-down">
+                            <a href="">Admin Tools</a>
+                            <ul>
+                                <li><a href="@Url.Action("Index", "Applications")">Applications</a></li>
+                                <li><a href="@Url.Action("Index", "ApplicationStatus")">Application Statuses</a></li>
+                                <li><a href="@Url.Action("Index", "Positions")">Positions</a></li>
+                                <li><a href="@Url.Action("Index", "OpenPositions")">Open Positions</a></li>
+                            </ul>
+                        </li>
+                    }
+                    else if (User.IsInRole("Manager"))
+                    {
+                        <li class="drop-down">
+                            <a href="">Manager Tools</a>
+                            <ul>
+                                <li><a href="@Url.Action("Index", "Applications")">Applications</a></li>
+                                <li><a href="@Url.Action("Index", "ApplicationStatus")">Application Statuses</a></li>
+                                <li><a href="@Url.Action("Index", "Positions")">Positions</a></li>
+                                <li><a href="@Url.Action("Index", "OpenPositions")">Open Positions</a></li>
+                            </ul>
+                        </li>
+                    }
+                    else { }
+                        <li>@Html.Partial("_LoginPartial")</li>
                 </ul>
             </nav><!-- .nav-menu -->
         </div>

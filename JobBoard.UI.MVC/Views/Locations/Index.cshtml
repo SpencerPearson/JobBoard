@@ -12,13 +12,9 @@
         @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-success" })
     </p>
     <tr>
-        @if (User.IsInRole("Admin") || User.IsInRole("Manager"))
-        {
-            <th>
-                @Html.DisplayNameFor(model => model.StoreNumber)
-            </th>
-        }
-
+        <th>
+            @Html.DisplayNameFor(model => model.StoreNumber)
+        </th>
         <th>
             @Html.DisplayNameFor(model => model.City)
         </th>
@@ -33,31 +29,31 @@
 
     @foreach (var item in Model)
     {
-    <tr>
-        <td class="style-link">
-            <a href="@Url.Action("Details", "Positions", new { id = item.LocationId })">
-                @Html.DisplayFor(modelItem => item.StoreNumber)
-            </a>
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.City)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.State)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UserDetail.FirstName) @Html.DisplayFor(modelItem => item.UserDetail.LastName)
-        </td>
-        <td class="text-right">
-            <a href="@Url.Action("Edit", "Positions", new { id = item.LocationId })">
-                <i class="icofont-edit" aria-hidden="true"></i>
-            </a>
-            &emsp;
-            <a href="@Url.Action("Delete", "Positions", new { id = item.LocationId })">
-                <i class="icofont-bin" aria-hidden="true"></i>
-            </a>
-        </td>
-    </tr>
+        <tr>
+            <td class="style-link">
+                <a href="@Url.Action("Details", "Positions", new { id = item.LocationId })">
+                    @Html.DisplayFor(modelItem => item.StoreNumber)
+                </a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.City)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.State)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserDetail.FirstName) @Html.DisplayFor(modelItem => item.UserDetail.LastName)
+            </td>
+            <td class="text-right">
+                <a href="@Url.Action("Edit", "Positions", new { id = item.LocationId })">
+                    <i class="icofont-edit" aria-hidden="true"></i>
+                </a>
+                &emsp;
+                <a href="@Url.Action("Delete", "Positions", new { id = item.LocationId })">
+                    <i class="icofont-bin" aria-hidden="true"></i>
+                </a>
+            </td>
+        </tr>
     }
 
 </table>
