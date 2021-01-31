@@ -63,7 +63,7 @@ namespace JobBoard.Data.EF//Metadata
     public class LocationMetadata
     {
         [Required]
-        [Display(Name = "Store Number")]
+        [Display(Name = "Store")]
         public string StoreNumber { get; set; }
 
         [Required]

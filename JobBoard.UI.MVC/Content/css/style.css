@@ -285,7 +285,7 @@ h1, h2, h3, h4, h5, h6 {
 /* Mobile Navigation */
 .mobile-nav-toggle {
     position: fixed;
-    top: 20px;
+    top: 65px;
     right: 15px;
     z-index: 9998;
     border: 0;
@@ -830,7 +830,7 @@ section {
 # Cta
 --------------------------------------------------------------*/
 .cta {
-    background: linear-gradient(rgba(160, 160, 160, 0.8), rgba(160, 160, 160, 0.9)), url("../img/cta-bg.jpg") fixed center center;
+    background: linear-gradient(rgba(160, 160, 160, 0.8), rgba(160, 160, 160, 0.9)), url("../img/rocket-fuel-cafe.jpg") fixed center center;
     background-size: cover;
     padding: 120px 0;
 }
@@ -1798,6 +1798,19 @@ h2.view-title {
     font-size: 3em;
 }
 
+@media (max-width: 768px) {
+    h2.view-title {
+       font-size: 2em;
+        
+    }
+}
+@media (max-width: 412px) {
+    h2.view-title {
+        font-size: 1em;
+    }
+}
+
+
 .detailsShape {
     width: 60%;
     margin: auto;
@@ -1808,6 +1821,51 @@ h2.view-title {
     color: #fff;
     background-color: #731919;
     border-spacing: 0;
+}
+@media (max-width: 1024px) {
+    .detailsShape {
+        padding-left: 8px;
+        padding-right: 8px;
+    }
+}
+
+@media (max-width: 992px) {
+    .detailsShape .img {
+        min-height: 400px;
+    }
+
+    .detailsShape {
+        padding-top: 30px;
+        width: 100%;
+    }
+
+
+}
+
+@media (max-width: 655px) {
+    .detailsShape .img {
+        min-height: 200px;
+        width: 100%;
+    }
+    .detailsShape tbody::after {
+        font-size: .7em;
+        
+        width: 100%;
+    }
+    .detailsShape th{
+        font-size: .7em;
+        font-weight: normal;
+    }
+    .detailsShape {
+        padding-top: 5px;
+        padding-left: 5px;
+        
+    }
+    .detailsShape p {
+        font-size: .7em;
+        padding: 5px;
+
+    }
 }
 
 .user-inputs {
@@ -1899,10 +1957,17 @@ hr.white-hr {
     border-radius: 1em;
     background-color: #731919;
 }
-.about-content li{
-    margin-top: 1em;
+@media (max-width: 655px) {
+    .about-content {
+        font-size: .8em;
+        padding: .5em;
+        margin-top: 8px;
+    }
 }
+    .about-content li {
+        margin-top: 1em;
+    }
 
-.table-striped tbody tr:nth-of-type(even) {
-    background-color: #BF2A2A;
-}
+    .table-striped tbody tr:nth-of-type(even) {
+        background-color: #BF2A2A;
+    }

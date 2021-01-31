@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using JobBoard.Data.EF;
+using Microsoft.AspNet.Identity;
 
 namespace JobBoard.UI.MVC.Controllers
 {
@@ -133,6 +134,45 @@ namespace JobBoard.UI.MVC.Controllers
             db.OpenPositions.Remove(openPosition);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        //One click apply
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Apply(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            string currentUserID = User.Identity.GetUserId();
+            UserDetail detail = db.UserDetails.Where(u => u.UserId == currentUserID).Single();
+            if (detail.ResumeFileName == "NoResume.pdf")
+            {
+                ViewBag.Message = "You have not yet uploaded a resume. Please upload your resume before applying to an open position!";
+                return RedirectToAction("MyResume", "UserDetails");
+            }
+            else
+            {
+                OpenPosition openPosition = db.OpenPositions.Find(id);
+                if (openPosition == null)
+                {
+                    return HttpNotFound();
+                }
+                Application app = new Application();
+
+                app.OpenPositionId = openPosition.OpenPositionId;
+                app.UserId = currentUserID;
+                app.ApplicationDate = DateTime.Now;
+                app.ApplicationStatus = 1;
+
+                app.ResumeFilename = detail.ResumeFileName;
+
+                db.Applications.Add(app);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            
         }
 
         protected override void Dispose(bool disposing)

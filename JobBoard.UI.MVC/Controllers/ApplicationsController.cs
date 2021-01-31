@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using JobBoard.Data.EF;
+using Microsoft.AspNet.Identity;
 
 namespace JobBoard.UI.MVC.Controllers
 {

@@ -1,0 +1,59 @@
+﻿@model JobBoard.Data.EF.UserDetail
+
+@{
+    ViewBag.Title = "Resume for " + Model.FullName;
+}
+<br />
+<h2 class="view-title">@ViewBag.Title</h2>
+@if (Model.ResumeFileName == "NoResume.pdf")
+{
+    <section id="hero" class="d-flex align-items-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 d-flex flex-column justify-content-center pt-4 pt-lg-0 order-2 order-lg-1" data-aos="fade-up" data-aos-delay="200">
+                    <h1>Upload your resume!</h1>
+                    <h2>In order to apply for jobs, you'll first need to upload a resume in PDF format. Need some help? We've got some great resume resources on this page to get you started!</h2>
+                    <div class="d-lg-flex">
+                        <a href="#resources" class="btn-get-started scrollto">Resume Resources</a>
+                        <a href="https://www.youtube.com/watch?v=_m2hqIGrtrk" class="venobox btn-watch-video" data-vbtype="video" data-autoplay="true"> Watch Video <i class="icofont-play-alt-2"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="zoom-in" data-aos-delay="200">
+                    <img src="~/Content/img/Rocket-Fuel-Coffee-white.png" class="img-fluid animated" alt="Rocket Fuel Coffee logo">
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+}
+else
+{
+    <div class="md-col-8 detailsShape">
+        <embed src="~/Content/resumes/@Model.ResumeFileName" type="application/pdf" style="width: 100%; height: 500px;" />
+    </div>
+}
+<h3 class="view-title">Upload your resume below:</h3>
+<div class="container detailsShape">
+    @using (Html.BeginForm("MyResume", "UserDetails", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary("", new { @class = "text-danger" })
+
+        @Html.HiddenFor(model => model.UserId)
+        @Html.HiddenFor(model => model.FirstName)
+        @Html.HiddenFor(model => model.LastName)
+        <div class="form-group col-md-6">
+            @Html.Label("Resume (PDF)")
+            <div>
+                <input type="file" accept=".pdf" name="ResumeFile" />
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" class="btn btn-success" value="Submit" />
+            </div>
+        </div>
+    }
+</div>
+

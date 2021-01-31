@@ -15,7 +15,7 @@
     <div class="form-horizontal detailsShape">
         <div class="row">
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            <div class="form-group col-md-4">
+            <div class="form-group col-sm-4">
                 @Html.LabelFor(model => model.StoreNumber, htmlAttributes: new { @class = "control-label" })
                 <div>
                     @Html.EditorFor(model => model.StoreNumber, new { htmlAttributes = new { @class = "form-control" } })
@@ -23,7 +23,7 @@
                 </div>
             </div>
 
-            <div class="form-group col-md-6">
+            <div class="form-group col-sm-6">
                 @Html.LabelFor(model => model.City, htmlAttributes: new { @class = "control-label" })
                 <div>
                     @Html.EditorFor(model => model.City, new { htmlAttributes = new { @class = "form-control" } })
@@ -31,7 +31,7 @@
                 </div>
             </div>
 
-            <div class="form-group col-md-2">
+            <div class="form-group col-sm-2">
                 @Html.LabelFor(model => model.State, htmlAttributes: new { @class = "control-label" })
                 <div>
                     @Html.EditorFor(model => model.State, new { htmlAttributes = new { @class = "form-control" } })
@@ -39,7 +39,7 @@
                 </div>
             </div>
 
-            <div class="form-group col-md-12">
+            <div class="form-group col-sm-12">
                 @Html.LabelFor(model => model.UserDetail.FullName, "Hiring Manager", htmlAttributes: new { @class = "control-label" })
                 <div>
                     @Html.DropDownList("ManagerId", null, "[- Select a Hiring Manager -]", htmlAttributes: new { @class = "form-control" })
@@ -47,12 +47,12 @@
                 </div>
             </div>
 
-            <div class="form-group col-md-1">
+            <div class="form-group offset-1 col-xs-1">
                 <div>
                     <input type="submit" value="Create" class="btn btn-success" />
                 </div>
             </div>
-            <div class="col-md-2">
+            <div class="col-xs-2">
                &ensp; @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-secondary" })
             </div>
         </div>

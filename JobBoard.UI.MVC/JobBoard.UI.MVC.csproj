@@ -202,6 +202,7 @@
     <Content Include="Content\img\favicon-32x32.png" />
     <Content Include="Content\img\favicon.ico" />
     <Content Include="Content\img\favicon.png" />
+    <Content Include="Content\img\rocket-fuel-cafe.jpg" />
     <Content Include="Content\img\Rocket-Fuel-Coffee-Smol.png" />
     <Content Include="Content\img\Rocket-Fuel-Coffee-white.png" />
     <Content Include="Content\img\Rocket-Fuel-Coffee-wide-white.png" />
@@ -469,6 +470,7 @@
     <Content Include="Views\OpenPositions\Details.cshtml" />
     <Content Include="Views\OpenPositions\Edit.cshtml" />
     <Content Include="Views\OpenPositions\Index.cshtml" />
+    <Content Include="Views\UserDetails\MyResume.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
