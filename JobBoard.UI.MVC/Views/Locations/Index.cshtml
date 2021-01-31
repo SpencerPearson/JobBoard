@@ -31,7 +31,7 @@
     {
         <tr>
             <td class="style-link">
-                <a href="@Url.Action("Details", "Positions", new { id = item.LocationId })">
+                <a href="@Url.Action("Details", "Locations", new { id = item.LocationId })">
                     @Html.DisplayFor(modelItem => item.StoreNumber)
                 </a>
             </td>
@@ -42,14 +42,14 @@
                 @Html.DisplayFor(modelItem => item.State)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.UserDetail.FirstName) @Html.DisplayFor(modelItem => item.UserDetail.LastName)
+                @Html.DisplayFor(modelItem => item.UserDetail.FullName)
             </td>
             <td class="text-right">
-                <a href="@Url.Action("Edit", "Positions", new { id = item.LocationId })">
+                <a href="@Url.Action("Edit", "Locations", new { id = item.LocationId })">
                     <i class="icofont-edit" aria-hidden="true"></i>
                 </a>
                 &emsp;
-                <a href="@Url.Action("Delete", "Positions", new { id = item.LocationId })">
+                <a href="@Url.Action("Delete", "Locations", new { id = item.LocationId })">
                     <i class="icofont-bin" aria-hidden="true"></i>
                 </a>
             </td>

@@ -113,7 +113,7 @@ namespace JobBoard.UI.MVC.Models
         public ActionResult DeleteConfirmed(string id)
         {
             UserDetail userDetail = db.UserDetails.Find(id);
-            db.UserDetails.Remove(userDetail);
+            userDetail.ResumeFileName = "NoResume.pdf";
             db.SaveChanges();
             return RedirectToAction("Index");
         }

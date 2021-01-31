@@ -194,7 +194,13 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\css\style.css" />
+    <Content Include="Content\img\android-chrome-192x192.png" />
+    <Content Include="Content\img\android-chrome-512x512.png" />
+    <Content Include="Content\img\apple-touch-icon.png" />
     <Content Include="Content\img\cta-bg.jpg" />
+    <Content Include="Content\img\favicon-16x16.png" />
+    <Content Include="Content\img\favicon-32x32.png" />
+    <Content Include="Content\img\favicon.ico" />
     <Content Include="Content\img\favicon.png" />
     <Content Include="Content\img\Rocket-Fuel-Coffee-Smol.png" />
     <Content Include="Content\img\Rocket-Fuel-Coffee-white.png" />
@@ -351,6 +357,7 @@
     <Content Include="Content\vendor\remixicon\remixicon.woff" />
     <Content Include="Content\vendor\remixicon\remixicon.woff2" />
     <Content Include="Content\resumes\NoResume.pdf" />
+    <Content Include="Content\img\site.webmanifest" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />

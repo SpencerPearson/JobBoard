@@ -1,16 +1,13 @@
 ﻿@model IEnumerable<JobBoard.Data.EF.UserDetail>
 
 @{
-    ViewBag.Title = "List of User Resumes";
+    ViewBag.Title = "User Resumes";
 }
 <br />
 <h2 class="view-title">@ViewBag.Title</h2>
 
 
 <table class="table table-striped detailsShape">
-    <p class="offset-3">
-        @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-success" })
-    </p>
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.FirstName)
@@ -21,7 +18,7 @@
         <th>
             @Html.DisplayNameFor(model => model.ResumeFileName)
         </th>
-        <th></th>
+        <th class="text-right">Edit | Delete</th>
     </tr>
 
     @foreach (var item in Model)
@@ -38,11 +35,11 @@
                     @Html.DisplayFor(modelItem => item.ResumeFileName)
                 </a>
             </td>
-            <td>
+            <td class=" text-right">
                 <a href="@Url.Action("Edit", "UserDetails", new { id = item.UserId })">
                     <i class="icofont-edit" aria-hidden="true"></i>
                 </a>
-
+                &emsp;
                 <a href="@Url.Action("Delete", "UserDetails", new { id = item.UserId })">
                     <i class="icofont-bin" aria-hidden="true"></i>
                 </a>

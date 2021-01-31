@@ -6,31 +6,30 @@
 <br />
 <h2 class="view-title">@ViewBag.Title</h2>
 
-<div>
-    <div class="detailsShape">
-        <div class="text-center">
-            <strong>@Html.DisplayNameFor(model => model.Location.StoreNumber):</strong> @Html.DisplayFor(model => model.Location.StoreNumber) &ensp; | &ensp;
-            <strong> @Html.DisplayNameFor(model => model.Location.City):</strong> @Html.DisplayFor(model => model.Location.City) &ensp; | &ensp;
-            <strong>@Html.DisplayNameFor(model => model.Position.Title):</strong> @Html.DisplayFor(model => model.Position.Title)
-        </div>
-        <hr class="white-hr" />
-        <div>
-            <strong>@Html.DisplayNameFor(model => model.Position.JobDescription):</strong>
-            <p>
-                @Html.DisplayFor(model => model.Position.JobDescription)
-            </p>
-        </div>
-
-        @if (User.IsInRole("Applicant") || User.IsInRole("Manager"))
-        {
-            @Html.ActionLink("Apply", "OneClick", new { id = Model.OpenPositionId }, new { @class = "btn btn-success" }) @:&nbsp;
-        }
-        @if (User.IsInRole("Manager") || User.IsInRole("Admin"))
-        {
-            @Html.ActionLink("Edit", "Edit", new { id = Model.OpenPositionId }, new { @class = "btn btn-orange" }) @:&ensp;
-        }
-
-        @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-dark" })
+<div class="detailsShape">
+    <div class="text-center">
+        <strong>@Html.DisplayNameFor(model => model.Location.StoreNumber):</strong> @Html.DisplayFor(model => model.Location.StoreNumber) &ensp; | &ensp;
+        <strong> @Html.DisplayNameFor(model => model.Location.City):</strong> @Html.DisplayFor(model => model.Location.City) &ensp; | &ensp;
+        <strong>@Html.DisplayNameFor(model => model.Position.Title):</strong> @Html.DisplayFor(model => model.Position.Title)
     </div>
+    <hr class="white-hr" />
+    <div>
+        <strong>@Html.DisplayNameFor(model => model.Position.JobDescription):</strong>
+        <p>
+            @Html.DisplayFor(model => model.Position.JobDescription)
+        </p>
+    </div>
+
+    @if (User.IsInRole("Applicant") || User.IsInRole("Manager"))
+    {
+        @Html.ActionLink("Apply", "OneClick", new { id = Model.OpenPositionId }, new { @class = "btn btn-success" }) @:&nbsp;
+    }
+    @if (User.IsInRole("Manager") || User.IsInRole("Admin"))
+    {
+        @Html.ActionLink("Edit", "Edit", new { id = Model.OpenPositionId }, new { @class = "btn btn-orange" }) @:&ensp;
+    }
+
+    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-secondary" })
 </div>
+
 

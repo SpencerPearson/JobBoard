@@ -1793,6 +1793,10 @@ section {
     text-align: center;
     color: #fff;
 }
+h2.view-title {
+    font-family: hotel-open;
+    font-size: 3em;
+}
 
 .detailsShape {
     width: 60%;
