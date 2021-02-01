@@ -455,7 +455,6 @@
     <Content Include="Views\Positions\Details.cshtml" />
     <Content Include="Views\Positions\Edit.cshtml" />
     <Content Include="Views\Positions\Index.cshtml" />
-    <Content Include="Views\Applications\Create.cshtml" />
     <Content Include="Views\Applications\Delete.cshtml" />
     <Content Include="Views\Applications\Details.cshtml" />
     <Content Include="Views\Applications\Edit.cshtml" />

@@ -29,6 +29,7 @@ namespace JobBoard.UI.MVC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             Application application = db.Applications.Find(id);
             if (application == null)
             {
@@ -114,6 +115,11 @@ namespace JobBoard.UI.MVC.Controllers
             if (application == null)
             {
                 return HttpNotFound();
+            }
+            DateTime deletionDate = application.ApplicationDate.AddMonths(6);
+            if (DateTime.Now < deletionDate )
+            {
+                ViewBag.Message = $"Once reviewed, applications must be kept on record for 6 months after the date of completion.\nThis application cannot be deleted until {deletionDate:MM/dd/yyyy}";
             }
             return View(application);
         }

@@ -1,10 +1,11 @@
 ﻿@model IEnumerable<JobBoard.Data.EF.Application>
 
 @{
-    ViewBag.Title = "Applications";
+    ViewBag.Title = " Submitted Applications";
 }
 <br />
 <h2 class="view-title">@ViewBag.Title</h2>
+<h3 class="view-title">Click applicant name for more information.</h3>
 
 
 <table class="table table-striped detailsShape">
@@ -24,30 +25,36 @@
         <th>
             @Html.DisplayNameFor(model => model.ApplicationStatus1.StatusName)
         </th>
-        <th></th>
+        <th class="text-right">Edit | Delete</th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.UserDetail.FullName)
+        <td class="style-link">
+            <a href="@Url.Action("Details", "Applications", new { id = item.ApplicationId })">
+                @Html.DisplayFor(modelItem => item.UserDetail.FullName)
+            </a>
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.OpenPositionId)
+            @Html.DisplayFor(modelItem => item.OpenPosition.Position.Title)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.ApplicationDate)
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ResumeFilename)
+        <td class="style-link">
+            <a href="~/Content/resumes/@item.ResumeFilename">View Resume</a>
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.ApplicationStatus1.StatusName)
         </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.ApplicationId }) |
-            @Html.ActionLink("Details", "Details", new { id = item.ApplicationId }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.ApplicationId })
+        <td class="text-right">
+            <a href="@Url.Action("Edit", "Applications", new { id = item.ApplicationId })">
+                <i class="icofont-edit" aria-hidden="true"></i>
+            </a>
+            
+            <a href="@Url.Action("Delete", "Applications", new { id = item.ApplicationId })">
+                <i class="icofont-bin" aria-hidden="true"></i>
+            </a>
         </td>
     </tr>
 }

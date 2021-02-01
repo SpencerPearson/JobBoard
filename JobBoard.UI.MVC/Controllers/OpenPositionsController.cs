@@ -40,6 +40,8 @@ namespace JobBoard.UI.MVC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
+
             OpenPosition openPosition = db.OpenPositions.Find(id);
             if (openPosition == null)
             {
@@ -137,9 +139,7 @@ namespace JobBoard.UI.MVC.Controllers
         }
 
         //One click apply
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Apply(int? id)
+        public ActionResult OneClick(int? id)
         {
             if (id == null)
             {
@@ -149,7 +149,7 @@ namespace JobBoard.UI.MVC.Controllers
             UserDetail detail = db.UserDetails.Where(u => u.UserId == currentUserID).Single();
             if (detail.ResumeFileName == "NoResume.pdf")
             {
-                ViewBag.Message = "You have not yet uploaded a resume. Please upload your resume before applying to an open position!";
+                TempData["ResumeWarning"] = "You have not yet uploaded a resume. Please upload your resume before applying to an open position!";
                 return RedirectToAction("MyResume", "UserDetails");
             }
             else
@@ -165,11 +165,13 @@ namespace JobBoard.UI.MVC.Controllers
                 app.UserId = currentUserID;
                 app.ApplicationDate = DateTime.Now;
                 app.ApplicationStatus = 1;
-
+                app.ManagerNotes = $"Application received on {app.ApplicationDate:MM/dd/yyyy}, please respond by {app.ApplicationDate.AddDays(5):MM/dd/yyyy}.";
                 app.ResumeFilename = detail.ResumeFileName;
 
                 db.Applications.Add(app);
                 db.SaveChanges();
+
+                ViewBag.Message = "You have successfully applied for the " + openPosition.Position.Title + "position at Store " + openPosition.Location.StoreNumber + openPosition.Location.City + ". A confirmation will be emailed to you at " + User.Identity.Name + " after a manager reviews your application.";
                 return RedirectToAction("Index");
             }
             

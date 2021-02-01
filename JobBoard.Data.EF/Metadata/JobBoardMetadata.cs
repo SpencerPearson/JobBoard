@@ -21,7 +21,7 @@ namespace JobBoard.Data.EF//Metadata
 
         [Display(Name = "Application Date")]
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yy}")]
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")]
         public System.DateTime ApplicationDate { get; set; }
 
         [Display(Name = "Manager Notes")]

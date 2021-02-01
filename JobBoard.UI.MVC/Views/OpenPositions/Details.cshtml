@@ -22,7 +22,8 @@
 
     @if (User.IsInRole("Applicant") || User.IsInRole("Manager"))
     {
-        @Html.ActionLink("Apply", "OneClick", new { id = Model.OpenPositionId }, new { @class = "btn btn-success" }) @:&nbsp;
+        
+        @Html.ActionLink("One-Click Appllication", "OneClick", new { id = Model.OpenPositionId }, new { @class = "btn btn-success" }) @:&nbsp;
     }
     @if (User.IsInRole("Manager") || User.IsInRole("Admin"))
     {

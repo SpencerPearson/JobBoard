@@ -4,6 +4,7 @@
     ViewBag.Title = "Available Positions";
 }
 <br />
+<h3 class="alert-success">@ViewBag.Message</h3>
 <h2 class="view-title">@ViewBag.Title</h2>
 <h5 class="view-title">Click the job title to see more details and apply.</h5>
 <br />
@@ -59,7 +60,7 @@
             <a href="@Url.Action("Edit", "OpenPositions", new { id = item.OpenPositionId })">
                 <i class="icofont-edit" aria-hidden="true"></i>
             </a>
-            &emsp;
+            
             <a href="@Url.Action("Delete", "OpenPositions", new { id = item.OpenPositionId })">
                 <i class="icofont-bin" aria-hidden="true"></i>
             </a>

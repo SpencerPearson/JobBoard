@@ -1,12 +1,13 @@
 ﻿@model JobBoard.Data.EF.UserDetail
 
 @{
-    ViewBag.Title = "Resume for " + Model.FullName;
+    ViewBag.Title = "Resume for: " + Model.FullName;
 }
 <br />
 <h2 class="view-title">@ViewBag.Title</h2>
 @if (Model.ResumeFileName == "NoResume.pdf")
 {
+    <h3 class="alert-warning text-center">@TempData["ResumeWarning"]</h3>
     <section id="hero" class="d-flex align-items-center">
         <div class="container">
             <div class="row">

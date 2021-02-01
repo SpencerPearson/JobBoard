@@ -7,7 +7,7 @@
 <h2 class="view-title">@ViewBag.Title</h2>
 
 
-<table class="table-responsive-md table-striped detailsShape">
+<table class="table table-striped detailsShape">
     <p class="offset-3">
         @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-success" })
     </p>
@@ -48,7 +48,7 @@
                 <a href="@Url.Action("Edit", "Locations", new { id = item.LocationId })">
                     <i class="icofont-edit" aria-hidden="true"></i>
                 </a>
-                &emsp;
+                
                 <a href="@Url.Action("Delete", "Locations", new { id = item.LocationId })">
                     <i class="icofont-bin" aria-hidden="true"></i>
                 </a>

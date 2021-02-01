@@ -6,13 +6,13 @@
 <h2 class="view-title">@ViewBag.Title</h2>
 <p class="text-success">@ViewBag.StatusMessage</p>
 <div class="row detailsShape">
-    <div class="offset-md-1 col-md-4">
+    <div class="offset-xs-1 col-xs-4">
         <p>
             @(Model.HasPassword ? Html.ActionLink("Change your password", "ChangePassword", null, new { @class = "btn btn-orange" })
                                         : Html.ActionLink("Pick a password", "SetPassword", null, new { @class = "btn btn-custom-danger" }))
         </p>
     </div>
-    <div class="col-md-6 text-right">
+    <div class="col-xs-6 text-right">
         <p>
             Phone Number: @(Model.PhoneNumber ?? "None")
             @if (Model.PhoneNumber != null)
@@ -28,7 +28,7 @@
 
         </p>
     </div>
-    <div class="col-md-12 text-center">
+    <div class="col-xs-12 text-center">
         @if (Model.TwoFactor)
         {
             using (Html.BeginForm("DisableTFA", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
@@ -52,7 +52,7 @@
             }
         }
     </div>
-    <div class="col-md-12 text-center">
+    <div class="col-xs-12 text-center">
         @if (Model.BrowserRemembered)
         {
             using (Html.BeginForm("ForgetBrowser", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))

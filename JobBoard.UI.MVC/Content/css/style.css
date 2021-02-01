@@ -1836,7 +1836,7 @@ h2.view-title {
 
     .detailsShape {
         padding-top: 30px;
-        width: 100%;
+        width: 95%;
     }
 
 
@@ -1903,8 +1903,8 @@ label {
 
 .table {
     color: #fff;
+    
 }
-
     .table i {
         color: #fff;
         font-size: 2em;
@@ -1948,7 +1948,7 @@ hr.white-hr {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    width: 90%;
+    width: 100%;
 }
 
 .about-content {
@@ -1971,3 +1971,17 @@ hr.white-hr {
     .table-striped tbody tr:nth-of-type(even) {
         background-color: #BF2A2A;
     }
+.resume-label {
+    font-size: 2em;
+    padding-bottom: .5em;
+}
+.alert-danger{
+    font-size: 2em;
+    padding: .5em 3em;
+}
+@media (max-width: 655px) {
+    .alert-danger {
+        font-size: 1em;
+        padding: .5em;
+    }
+}
