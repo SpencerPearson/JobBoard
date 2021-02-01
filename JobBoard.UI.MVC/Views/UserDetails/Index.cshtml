@@ -18,7 +18,14 @@
         <th>
             @Html.DisplayNameFor(model => model.ResumeFileName)
         </th>
-        <th class="text-right">Edit | Delete</th>
+        @if (User.IsInRole("Manager"))
+        {
+            <th class="text-right">Edit</th>
+        }
+        @if (User.IsInRole("Admin"))
+        {
+            <th class="text-right">Edit | Delete</th>
+        }
     </tr>
 
     @foreach (var item in Model)
@@ -35,15 +42,26 @@
                     @Html.DisplayFor(modelItem => item.ResumeFileName)
                 </a>
             </td>
-            <td class=" text-right">
-                <a href="@Url.Action("Edit", "UserDetails", new { id = item.UserId })">
-                    <i class="icofont-edit" aria-hidden="true"></i>
-                </a>
-                &emsp;
-                <a href="@Url.Action("Delete", "UserDetails", new { id = item.UserId })">
-                    <i class="icofont-bin" aria-hidden="true"></i>
-                </a>
-            </td>
+            @if (User.IsInRole("Manager"))
+            {
+                <td class="text-right">
+                    <a href="@Url.Action("Edit", "UserDetails", new { id = item.UserId })">
+                        <i class="icofont-edit" aria-hidden="true"></i>
+                    </a>
+                </td>
+            }
+            @if (User.IsInRole("Admin"))
+            {
+                <td class="text-right">
+                    <a href="@Url.Action("Edit", "UserDetails", new { id = item.UserId })">
+                        <i class="icofont-edit" aria-hidden="true"></i>
+                    </a>
+
+                    <a href="@Url.Action("Delete", "UserDetails", new { id = item.UserId })">
+                        <i class="icofont-bin" aria-hidden="true"></i>
+                    </a>
+                </td>
+            }
         </tr>
     }
 

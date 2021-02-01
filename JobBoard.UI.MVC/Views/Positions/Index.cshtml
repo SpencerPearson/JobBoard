@@ -6,16 +6,24 @@
 <br />
 <h2 class="view-title">@ViewBag.Title</h2>
 
-<div class="offset-1 col-xs-2">
+
+<div class="offset-2 col-xs-2">
     @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-success" })
 </div>
+
 <table class="table table-striped detailsShape">
 
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Title)
         </th>
-        <th class="text-right">Edit | Delete</th>
+        <th class="text-right">
+            Edit
+            @if (User.IsInRole("Admin"))
+            {
+                @:| Delete
+            }
+        </th>
     </tr>
 
     @foreach (var item in Model)
@@ -30,10 +38,13 @@
                 <a href="@Url.Action("Edit", "Positions", new { id = item.PositionId })">
                     <i class="icofont-edit" aria-hidden="true"></i>
                 </a>
-                &emsp;
-                <a href="@Url.Action("Delete", "Positions", new { id = item.PositionId })">
-                    <i class="icofont-bin" aria-hidden="true"></i>
-                </a>
+                @if (User.IsInRole("Admin"))
+                {
+                    <a href="@Url.Action("Delete", "Positions", new { id = item.PositionId })">
+                        <i class="icofont-bin" aria-hidden="true"></i>
+                    </a>
+                }
+
             </td>
         </tr>
     }

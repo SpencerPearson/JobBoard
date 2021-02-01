@@ -8,9 +8,13 @@
 
 
 <table class="table table-striped detailsShape">
+    @if (User.IsInRole("Admin"))
+    {
     <p class="offset-3">
         @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-success" })
     </p>
+    }
+    
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.StoreNumber)
@@ -24,7 +28,15 @@
         <th>
             Hiring Manager
         </th>
-        <th class="text-right">Edit | Delete</th>
+        @if (User.IsInRole("Manager"))
+        {
+            <th class="text-right">Edit</th>
+        }
+        @if (User.IsInRole("Admin"))
+        {
+            <th class="text-right">Edit | Delete</th>
+        }
+
     </tr>
 
     @foreach (var item in Model)
@@ -44,15 +56,27 @@
             <td>
                 @Html.DisplayFor(modelItem => item.UserDetail.FullName)
             </td>
-            <td class="text-right">
-                <a href="@Url.Action("Edit", "Locations", new { id = item.LocationId })">
-                    <i class="icofont-edit" aria-hidden="true"></i>
-                </a>
-                
-                <a href="@Url.Action("Delete", "Locations", new { id = item.LocationId })">
-                    <i class="icofont-bin" aria-hidden="true"></i>
-                </a>
-            </td>
+            @if (User.IsInRole("Manager"))
+            {
+                <td class="text-right">
+                    <a href="@Url.Action("Edit", "Locations", new { id = item.LocationId })">
+                        <i class="icofont-edit" aria-hidden="true"></i>
+                    </a>
+                </td>
+            }
+            @if (User.IsInRole("Admin"))
+            {
+                <td class="text-right">
+                    <a href="@Url.Action("Edit", "Locations", new { id = item.LocationId })">
+                        <i class="icofont-edit" aria-hidden="true"></i>
+                    </a>
+
+                    <a href="@Url.Action("Delete", "Locations", new { id = item.LocationId })">
+                        <i class="icofont-bin" aria-hidden="true"></i>
+                    </a>
+                </td>
+            }
+
         </tr>
     }
 

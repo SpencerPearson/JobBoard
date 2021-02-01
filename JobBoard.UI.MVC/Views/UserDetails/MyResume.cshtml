@@ -36,25 +36,33 @@ else
 }
 <h3 class="view-title">Upload your resume below:</h3>
 <div class="container detailsShape">
-    @using (Html.BeginForm("MyResume", "UserDetails", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
-    {
-        @Html.AntiForgeryToken()
-        @Html.ValidationSummary("", new { @class = "text-danger" })
+    <div class="row">
+        <div class="col-sm-6">
+            @using (Html.BeginForm("MyResume", "UserDetails", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary("", new { @class = "text-danger" })
 
-        @Html.HiddenFor(model => model.UserId)
-        @Html.HiddenFor(model => model.FirstName)
-        @Html.HiddenFor(model => model.LastName)
-        <div class="form-group col-md-6">
-            @Html.Label("Resume (PDF)")
-            <div>
-                <input type="file" accept=".pdf" name="ResumeFile" />
-            </div>
+                @Html.HiddenFor(model => model.UserId)
+                @Html.HiddenFor(model => model.FirstName)
+                @Html.HiddenFor(model => model.LastName)
+                <div class="form-group col-md-6">
+                    @Html.Label("Resume (PDF)")
+                    <div>
+                        <input type="file" accept=".pdf" name="ResumeFile" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" class="btn btn-success" value="Submit" />
+                    </div>
+                </div>
+            }
         </div>
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" class="btn btn-success" value="Submit" />
-            </div>
+        <div class="col-sm-6">
+            <p>Need to edit your name?</p>
+            @Html.ActionLink("Edit Name", "Edit", new { id = Model.UserId }, new { @class = "btn btn-orange" })
         </div>
-    }
+    </div>
 </div>
 

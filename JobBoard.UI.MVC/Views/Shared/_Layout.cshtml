@@ -53,40 +53,50 @@
                 <ul>
                     <li>@Html.ActionLink("Home", "Index", "Home", null, new { @class = "active" })</li>
                     <li>@Html.ActionLink("About", "About", "Home", null, new { @class = "active" })</li>
-                    <li>@Html.ActionLink("Locations", "Index", "Locations", null, new { @class = "active" })</li>
-                    <li>@Html.ActionLink("Resume", "MyResume", "UserDetails", null, new { @class = "active" })</li>
-                    <li>@Html.ActionLink("Jobs", "Index", "OpenPositions", null, new { @class = "active" })</li>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li>@Html.ActionLink("Resume", "MyResume", "UserDetails", null, new { @class = "active" })</li>
+                        <li>@Html.ActionLink("Jobs", "Index", "OpenPositions", null, new { @class = "active" })</li>
+                    }
+                    @if (User.IsInRole("Applicant"))
+                    {
+                        <li><a href="@Url.Action("Index", "Applications")">My Applications</a></li>
+                    }
 
-                    <li><a href="@Url.Action("Contact", "Home")">Contact</a></li>
                     @if (User.IsInRole("Admin"))
                     {
+                        <li><a href="@Url.Action("Index", "Applications")">Applications</a></li>
                         <li class="drop-down">
                             <a href="">Admin Tools</a>
                             <ul>
-                                <li><a href="@Url.Action("Index", "Applications")">Applications</a></li>
                                 <li><a href="@Url.Action("Index", "ApplicationStatus")">Application Statuses</a></li>
                                 <li><a href="@Url.Action("Index", "Positions")">Positions</a></li>
+                                <li><a href="@Url.Action("Index", "Locations")">Locations</a></li>
                                 <li><a href="@Url.Action("Index", "OpenPositions")">Open Positions</a></li>
                                 <li><a href="@Url.Action("Index", "UserDetails")">User Details</a></li>
-
-
                             </ul>
                         </li>
                     }
-                    else if (User.IsInRole("Manager"))
+                    @if (User.IsInRole("Manager"))
                     {
+                        <li><a href="@Url.Action("Index", "Applications")">Applications</a></li>
                         <li class="drop-down">
                             <a href="">Manager Tools</a>
                             <ul>
-                                <li><a href="@Url.Action("Index", "Applications")">Applications</a></li>
                                 <li><a href="@Url.Action("Index", "Positions")">Positions</a></li>
+                                <li><a href="@Url.Action("Index", "Locations")">Locations</a></li>
                                 <li><a href="@Url.Action("Index", "OpenPositions")">Open Positions</a></li>
                                 <li><a href="@Url.Action("Index", "UserDetails")">User Details</a></li>
                             </ul>
                         </li>
                     }
-                    else { }
-                        <li>@Html.Partial("_LoginPartial")</li>
+                    <li><a href="@Url.Action("Contact", "Home")">Contact</a></li>
+                    <li class="drop-down">
+                        <a href="">My Account</a>
+                        <ul class="account-login">
+                            @Html.Partial("_LoginPartial")
+                        </ul>
+                    </li>
                 </ul>
             </nav><!-- .nav-menu -->
         </div>
