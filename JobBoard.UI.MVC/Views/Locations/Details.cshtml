@@ -17,8 +17,12 @@
         <p>
             @Html.DisplayFor(model => model.UserDetail.FullName)
         </p>
-    </div> 
-    @Html.ActionLink("Edit", "Edit", new { id = Model.LocationId }, new { @class = "btn btn-orange" }) &ensp;
+    </div>
+    @if (User.IsInRole("Admin") || User.IsInRole("Manager"))
+    {
+        @Html.ActionLink("Edit", "Edit", new { id = Model.LocationId }, new { @class = "btn btn-orange" }) @:&ensp;
+    }
+
     @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-secondary" })
 </div>
 

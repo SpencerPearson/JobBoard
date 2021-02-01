@@ -43,6 +43,7 @@ namespace JobBoard.UI.MVC.Models
         }
 
         // GET: UserDetails/Edit/5
+        [Authorize(Roles = "Applicant, Admin, Manager")]
         public ActionResult Edit(string id)
         {
             if (id == null)
@@ -65,6 +66,7 @@ namespace JobBoard.UI.MVC.Models
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [Authorize(Roles = "Applicant, Admin, Manager")]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "UserId,FirstName,LastName")] UserDetail userDetail)
         {
@@ -120,6 +122,7 @@ namespace JobBoard.UI.MVC.Models
         }
 
         // GET: MyResume
+        [Authorize(Roles = "Applicant, Admin, Manager")]
         public ActionResult MyResume()
         {
             string id = User.Identity.GetUserId();
@@ -137,6 +140,7 @@ namespace JobBoard.UI.MVC.Models
         }
         // POST : MyResume
         [HttpPost]
+        [Authorize(Roles = "Applicant, Admin, Manager")]
         [ValidateAntiForgeryToken]
         public ActionResult MyResume([Bind(Include = "UserId,FirstName,LastName,ResumeFileName")] UserDetail userDetail, HttpPostedFileBase resumeFile)
         {

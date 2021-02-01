@@ -16,6 +16,7 @@ namespace JobBoard.UI.MVC.Controllers
         private JobBoardEntities db = new JobBoardEntities();
 
         // GET: OpenPositions
+        [Authorize(Roles = "Admin, Manager")]
         public ActionResult Index(string cityFilter)
         {
             ViewBag.CityFilter = new SelectList(db.OpenPositions.Select(x => x.Location.City).Distinct());
@@ -34,6 +35,7 @@ namespace JobBoard.UI.MVC.Controllers
         }
 
         // GET: OpenPositions/Details/5
+        [Authorize(Roles = "Admin, Manager")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -51,6 +53,7 @@ namespace JobBoard.UI.MVC.Controllers
         }
 
         // GET: OpenPositions/Create
+        [Authorize(Roles = "Admin, Manager")]
         public ActionResult Create()
         {
             ViewBag.LocationId = new SelectList(db.Locations, "LocationId", "StoreNumber");
@@ -62,6 +65,7 @@ namespace JobBoard.UI.MVC.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [Authorize(Roles = "Admin, Manager")]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "OpenPositionId,PositionId,LocationId")] OpenPosition openPosition)
         {
@@ -78,6 +82,7 @@ namespace JobBoard.UI.MVC.Controllers
         }
 
         // GET: OpenPositions/Edit/5
+        [Authorize(Roles = "Admin, Manager")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -98,6 +103,7 @@ namespace JobBoard.UI.MVC.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [Authorize(Roles = "Admin, Manager")]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "OpenPositionId,PositionId,LocationId")] OpenPosition openPosition)
         {
@@ -113,6 +119,7 @@ namespace JobBoard.UI.MVC.Controllers
         }
 
         // GET: OpenPositions/Delete/5
+        [Authorize(Roles = "Admin, Manager")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -129,6 +136,7 @@ namespace JobBoard.UI.MVC.Controllers
 
         // POST: OpenPositions/Delete/5
         [HttpPost, ActionName("Delete")]
+        [Authorize(Roles = "Admin, Manager")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
@@ -139,6 +147,7 @@ namespace JobBoard.UI.MVC.Controllers
         }
 
         //One click apply
+        [Authorize(Roles = "Applicant, Admin, Manager")]
         public ActionResult OneClick(int? id)
         {
             if (id == null)

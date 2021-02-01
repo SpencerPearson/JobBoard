@@ -23,7 +23,11 @@
         <dd>
             @Html.DisplayFor(model => model.JobDescription)
         </dd>
-        @Html.ActionLink("Edit", "Edit", new { id = Model.PositionId }, new { @class = "btn btn-orange" }) &ensp;
+        @if (User.IsInRole("Admin") || User.IsInRole("Manager"))
+        {
+            @Html.ActionLink("Edit", "Edit", new { id = Model.PositionId }, new { @class = "btn btn-orange" }) @:&ensp;
+        }
+
         @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-secondary" })
     </dl>
 </div>

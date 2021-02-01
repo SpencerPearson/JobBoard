@@ -28,7 +28,9 @@
         @Model.ManagerNotes
     </p>
     <hr class="white-hr" />
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ApplicationId }, new { @class = "btn btn-orange" }) &ensp;
-
+    @if (User.IsInRole("Admin") || User.IsInRole("Manager"))
+    {
+        @Html.ActionLink("Edit", "Edit", new { id = Model.ApplicationId }, new { @class = "btn btn-orange" }) @:&ensp;
+    }
     @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-secondary" })
 </div>

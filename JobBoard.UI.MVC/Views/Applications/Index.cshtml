@@ -25,38 +25,51 @@
         <th>
             @Html.DisplayNameFor(model => model.ApplicationStatus1.StatusName)
         </th>
-        <th class="text-right">Edit | Delete</th>
+
+        @if (User.IsInRole("Admin") || User.IsInRole("Manager"))
+        {
+            <th class="text-right">
+                Edit | Delete
+            </th>
+        }
+        else
+        {
+            <th></th>
+        }
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td class="style-link">
-            <a href="@Url.Action("Details", "Applications", new { id = item.ApplicationId })">
-                @Html.DisplayFor(modelItem => item.UserDetail.FullName)
-            </a>
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.OpenPosition.Position.Title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ApplicationDate)
-        </td>
-        <td class="style-link">
-            <a href="~/Content/resumes/@item.ResumeFilename">View Resume</a>
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ApplicationStatus1.StatusName)
-        </td>
-        <td class="text-right">
-            <a href="@Url.Action("Edit", "Applications", new { id = item.ApplicationId })">
-                <i class="icofont-edit" aria-hidden="true"></i>
-            </a>
-            
-            <a href="@Url.Action("Delete", "Applications", new { id = item.ApplicationId })">
-                <i class="icofont-bin" aria-hidden="true"></i>
-            </a>
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td class="style-link">
+                <a href="@Url.Action("Details", "Applications", new { id = item.ApplicationId })">
+                    @Html.DisplayFor(modelItem => item.UserDetail.FullName)
+                </a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OpenPosition.Position.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ApplicationDate)
+            </td>
+            <td class="style-link">
+                <a href="~/Content/resumes/@item.ResumeFilename">View Resume</a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ApplicationStatus1.StatusName)
+            </td>
+            <td class="text-right">
+                @if (User.IsInRole("Admin") || User.IsInRole("Application"))
+                {
+                    <a href="@Url.Action("Edit", "Applications", new { id = item.ApplicationId })">
+                        <i class="icofont-edit" aria-hidden="true"></i>
+                    </a>
+                    <a href="@Url.Action("Delete", "Applications", new { id = item.ApplicationId })">
+                        <i class="icofont-bin" aria-hidden="true"></i>
+                    </a>
+                }
+            </td>
+        </tr>
+    }
 
 </table>

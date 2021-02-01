@@ -16,13 +16,27 @@ namespace JobBoard.UI.MVC.Controllers
         private JobBoardEntities db = new JobBoardEntities();
 
         // GET: Applications
+        [Authorize(Roles = "Applicant, Admin, Manager")]
         public ActionResult Index()
         {
             var applications = db.Applications.Include(a => a.ApplicationStatus1).Include(a => a.OpenPosition).Include(a => a.UserDetail);
+            var userId = User.Identity.GetUserId();
+            
+            if (User.IsInRole("Manager"))
+            {
+                var managerApps = applications.Where(a => a.OpenPosition.Location.ManagerId == userId);
+                return View(managerApps.ToList());
+            }
+            if (User.IsInRole("Applicant"))
+            {
+                var applicantApps = applications.Where(a => a.UserId == userId);
+                return View(applicantApps.ToList());
+            }
             return View(applications.ToList());
         }
 
         // GET: Applications/Details/5
+        [Authorize(Roles = "Applicant, Admin, Manager")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -38,36 +52,38 @@ namespace JobBoard.UI.MVC.Controllers
             return View(application);
         }
 
+        //*******COMMENTED OUT CREATE ACTIONS AS ALL APPLICATIONS ARE CREATED VIA OneClick ACTION IN OpenPositions CONTROLLER *********
         // GET: Applications/Create
-        public ActionResult Create()
-        {
-            ViewBag.ApplicationStatus = new SelectList(db.ApplicationStatuses, "ApplicationStatusId", "StatusName");
-            ViewBag.OpenPositionId = new SelectList(db.OpenPositions, "OpenPositionId", "OpenPositionId");
-            ViewBag.UserId = new SelectList(db.UserDetails, "UserId", "FirstName");
-            return View();
-        }
+        //public ActionResult Create()
+        //{
+        //    ViewBag.ApplicationStatus = new SelectList(db.ApplicationStatuses, "ApplicationStatusId", "StatusName");
+        //    ViewBag.OpenPositionId = new SelectList(db.OpenPositions, "OpenPositionId", "OpenPositionId");
+        //    ViewBag.UserId = new SelectList(db.UserDetails, "UserId", "FirstName");
+        //    return View();
+        //}
 
-        // POST: Applications/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ApplicationId,OpenPositionId,UserId,ApplicationDate,ManagerNotes,ApplicationStatus,ResumeFilename")] Application application)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Applications.Add(application);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
+        //// POST: Applications/Create
+        //// To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        //// more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Create([Bind(Include = "ApplicationId,OpenPositionId,UserId,ApplicationDate,ManagerNotes,ApplicationStatus,ResumeFilename")] Application application)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        db.Applications.Add(application);
+        //        db.SaveChanges();
+        //        return RedirectToAction("Index");
+        //    }
 
-            ViewBag.ApplicationStatus = new SelectList(db.ApplicationStatuses, "ApplicationStatusId", "StatusName", application.ApplicationStatus);
-            ViewBag.OpenPositionId = new SelectList(db.OpenPositions, "OpenPositionId", "OpenPositionId", application.OpenPositionId);
-            ViewBag.UserId = new SelectList(db.UserDetails, "UserId", "FirstName", application.UserId);
-            return View(application);
-        }
+        //    ViewBag.ApplicationStatus = new SelectList(db.ApplicationStatuses, "ApplicationStatusId", "StatusName", application.ApplicationStatus);
+        //    ViewBag.OpenPositionId = new SelectList(db.OpenPositions, "OpenPositionId", "OpenPositionId", application.OpenPositionId);
+        //    ViewBag.UserId = new SelectList(db.UserDetails, "UserId", "FirstName", application.UserId);
+        //    return View(application);
+        //}
 
         // GET: Applications/Edit/5
+        [Authorize(Roles = "Admin, Manager")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -89,6 +105,7 @@ namespace JobBoard.UI.MVC.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [Authorize(Roles = "Admin, Manager")]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ApplicationId,OpenPositionId,UserId,ApplicationDate,ManagerNotes,ApplicationStatus,ResumeFilename")] Application application)
         {
@@ -105,6 +122,7 @@ namespace JobBoard.UI.MVC.Controllers
         }
 
         // GET: Applications/Delete/5
+        [Authorize(Roles = "Admin, Manager")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -126,6 +144,7 @@ namespace JobBoard.UI.MVC.Controllers
 
         // POST: Applications/Delete/5
         [HttpPost, ActionName("Delete")]
+        [Authorize(Roles = "Admin, Manager")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {

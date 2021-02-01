@@ -1265,6 +1265,7 @@ section {
     .faq .faq-list p {
         margin-bottom: 0;
         padding: 10px 0 0 0;
+        color: #777777;
     }
 
     .faq .faq-list .icon-show {
@@ -1790,8 +1791,13 @@ section {
 }
 
     #footer .credits a {
+        color: #5CB85C;
+        font-weight: bold;
         transition: 0.3s;
     }
+        #footer .credits a:hover {
+            color: #218838;
+        }
 
 @media (max-width: 768px) {
     #footer .footer-bottom {
