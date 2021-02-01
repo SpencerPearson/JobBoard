@@ -51,11 +51,11 @@
 
             <nav class="nav-menu d-none d-lg-block">
                 <ul>
-                    <li class="active"><a href="@Url.Action("Index", "Home")">Home</a></li>
-                    <li><a href="@Url.Action("About", "Home")">About</a></li>
-                    <li><a href="@Url.Action("Index", "Locations")">Locations</a></li>
-                    <li><a href="@Url.Action("MyResume", "UserDetails")">Resume</a></li>
-                    <li><a href="@Url.Action("Index", "OpenPositions")">Jobs</a></li>
+                    <li>@Html.ActionLink("Home", "Index", "Home", null, new { @class = "active" })</li>
+                    <li>@Html.ActionLink("About", "About", "Home", null, new { @class = "active" })</li>
+                    <li>@Html.ActionLink("Locations", "Index", "Locations", null, new { @class = "active" })</li>
+                    <li>@Html.ActionLink("Resume", "MyResume", "UserDetails", null, new { @class = "active" })</li>
+                    <li>@Html.ActionLink("Jobs", "Index", "OpenPositions", null, new { @class = "active" })</li>
 
                     <li><a href="@Url.Action("Contact", "Home")">Contact</a></li>
                     @if (User.IsInRole("Admin"))
