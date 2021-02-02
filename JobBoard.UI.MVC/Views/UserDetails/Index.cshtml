@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<JobBoard.Data.EF.UserDetail>
 
 @{
-    ViewBag.Title = "User Resumes";
+    ViewBag.Title = "User Details";
 }
 <br />
 <h2 class="view-title">@ViewBag.Title</h2>
@@ -20,7 +20,7 @@
         </th>
         @if (User.IsInRole("Manager"))
         {
-            <th class="text-right">Edit</th>
+            <th class="text-right">Edit Name</th>
         }
         @if (User.IsInRole("Admin"))
         {

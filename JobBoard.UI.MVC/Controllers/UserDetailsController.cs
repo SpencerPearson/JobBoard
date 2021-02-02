@@ -17,14 +17,19 @@ namespace JobBoard.UI.MVC.Models
         private JobBoardEntities db = new JobBoardEntities();
 
         // GET: UserDetails
-        [Authorize(Roles = "Admin, Manager")]
+        [Authorize(Roles = "Admin, Applicant, Manager")]
         public ActionResult Index()
         {
+            if (User.IsInRole("Applicant") || User.IsInRole("Manager"))
+            {
+                return RedirectToAction("MyResume");
+            }
+            
             return View(db.UserDetails.ToList());
         }
 
         // GET: UserDetails/Details/5
-        [Authorize(Roles = "Admin, Manager")]
+        [Authorize(Roles = "Admin")]
         public ActionResult Details(string id)
         {
             if (id == null)
@@ -74,7 +79,7 @@ namespace JobBoard.UI.MVC.Models
             {
                 db.Entry(userDetail).State = EntityState.Modified;
                 db.SaveChanges();
-                if (User.IsInRole("Applicant"))
+                if (User.IsInRole("Applicant") || User.IsInRole("Manager"))
                 {
                     return RedirectToAction("MyResume");
                 }

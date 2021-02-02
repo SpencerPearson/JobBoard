@@ -137,16 +137,29 @@ namespace JobBoard.UI.MVC.Controllers
                     int oldStatus = (int)Session["originalStatus"];
                     if (oldStatus != application.ApplicationStatus)
                     {
+                        //user Detail using the the UserID
+                        UserDetail ud = db.UserDetails.Find(application.UserId);
+                        OpenPosition op = db.OpenPositions.Find(application.OpenPositionId);
+                        UserDetail mud = db.UserDetails.Find(op.Location.ManagerId);
+                        string applicantName = ud.FullName;
+                        string positionTitle = op.Position.Title;
+                        string locationCity = op.Location.City;
+                        string hiringManager = mud.FullName;
+                        DateTime appDate = application.ApplicationDate;
+                        //Position using the PositionID
+
+                        //Location using the locationID from the Position object created above.
+
                         if (application.ApplicationStatus == 2)
                         {
-                            string message = $"Hello, {application.UserDetail.FullName}! This is an automatic notification that your application for the {application.OpenPosition.Position.Title} position at our {application.OpenPosition.Location.City} location has been recieved by our hiring manager, {application.OpenPosition.Location.UserDetail.FullName}. You will receive further notification once your application is reviewed. Please allow 3-5 business days for your application to be reviewed. Please do not reply to this email, as the inbox is not monitored. If you have questions please fill out our contact form at http://jobboard.spencerpearson.net/Home/Contact \n\nThank you for your interest in Rocket Fuel Jobs!";
+                            string message = $"Hello, {applicantName}! This is an automatic notification that your application for the {positionTitle} position at our {locationCity} location has been recieved by our hiring manager, {hiringManager}. You will receive further notification once your application is reviewed. Please allow 3-5 business days for your application to be reviewed. Please do not reply to this email, as the inbox is not monitored. If you have questions please fill out our contact form at http://jobboard.spencerpearson.net/Home/Contact <br /><br />Thank you for your interest in Rocket Fuel Jobs!";
 
-                            string subject = $"Status update on your {application.OpenPosition.Position.Title} application dated {application.ApplicationDate}";
+                            string subject = $"Status update on your {positionTitle} application dated {appDate:MM/dd/yyyy}";
 
                             ApplicationUser applicant = UserManager.FindById(application.UserId);
 
                             MailMessage mm = new MailMessage("no-reply@spencerpearson.net", applicant.Email, subject, message);
-
+                            mm.IsBodyHtml = true;
                             mm.ReplyToList.Clear();
 
                             SmtpClient client = new SmtpClient("mail.spencerpearson.net");
@@ -163,16 +176,16 @@ namespace JobBoard.UI.MVC.Controllers
                             }
 
                         }
-                        if (application.ApplicationStatus1.ApplicationStatusId == 3)
+                        if (application.ApplicationStatus == 3)
                         {
-                            string message = $"Congratulations, {application.UserDetail.FullName}! This is an automatic notification that your application for the {application.OpenPosition.Position.Title} position at our {application.OpenPosition.Location.City} location has been accepted by our hiring manager, {application.OpenPosition.Location.UserDetail.FullName}. You will receive further instruction shortly regarding the next step in the interview process. \n\nThank you for your interest in Rocket Fuel Jobs!";
+                            string message = $"Congratulations, {applicantName}! This is an automatic notification that your application for the {positionTitle} position at our {locationCity} location has been accepted by our hiring manager, {hiringManager}. You will receive further instruction shortly regarding the next step in the interview process. \n\nThank you for your interest in Rocket Fuel Jobs!";
 
-                            string subject = $"Status update on your {application.OpenPosition.Position.Title} application dated {application.ApplicationDate}";
+                            string subject = $"Status update on your {positionTitle} application dated {appDate:MM/dd/yyyy}";
 
                             ApplicationUser applicant = UserManager.FindById(application.UserId);
 
                             MailMessage mm = new MailMessage("no-reply@spencerpearson.net", applicant.Email, subject, message);
-
+                            mm.IsBodyHtml = true;
                             mm.ReplyToList.Clear();
 
                             SmtpClient client = new SmtpClient("mail.spencerpearson.net");
@@ -188,16 +201,16 @@ namespace JobBoard.UI.MVC.Controllers
 
                             }
                         }
-                        if (application.ApplicationStatus1.ApplicationStatusId == 4)
+                        if (application.ApplicationStatus == 4)
                         {
-                            string message = $"Greetings, {application.UserDetail.FullName}. We are sorry to inform you that your application for the {application.OpenPosition.Position.Title} position at our {application.OpenPosition.Location.City} location has been rejected by our hiring manager, {application.OpenPosition.Location.UserDetail.FullName}. Although your application may not have matched what we are looking for currently, we encourage you to apply for other open positions you feel you may be qualified for. All applications are kept on file for six months, so you also may reapply for this position after {application.ApplicationDate.AddMonths(6):MM/dd/yyyy} if it is still open at that time. \n\nThank you for your interest in Rocket Fuel Jobs!";
+                            string message = $"Greetings, {applicantName}. We are sorry to inform you that your application for the {positionTitle} position at our {locationCity} location has been rejected by our hiring manager, {hiringManager}. Although your application may not have matched what we are looking for currently, we encourage you to apply for other open positions you feel you may be qualified for. All applications are kept on file for six months, so you also may reapply for this position after {appDate.AddMonths(6):MM/dd/yyyy} if it is still open at that time. \n\nThank you for your interest in Rocket Fuel Jobs!";
 
-                            string subject = $"Status update on your {application.OpenPosition.Position.Title} application dated {application.ApplicationDate}";
+                            string subject = $"Status update on your {positionTitle} application dated {appDate}";
 
                             ApplicationUser applicant = UserManager.FindById(application.UserId);
 
                             MailMessage mm = new MailMessage("no-reply@spencerpearson.net", applicant.Email, subject, message);
-
+                            mm.IsBodyHtml = true;
                             mm.ReplyToList.Clear();
 
                             SmtpClient client = new SmtpClient("mail.spencerpearson.net");

@@ -18,7 +18,10 @@
     @Html.HiddenFor(model => model.UserId)
     @Html.HiddenFor(model => model.ApplicationDate)
     @Html.HiddenFor(model => model.ResumeFilename)
-    @Session["originalStatus"] = @Model.ApplicationStatus
+    @{
+        Session["originalStatus"] = Model.ApplicationStatus;
+    }
+
     <embed src="~/Content/resumes/@Model.UserDetail.ResumeFileName" type="application/pdf" style="width: 100%; height: 500px;" />
     <hr class="white-hr" />
     <div class="form-group">
