@@ -7,8 +7,13 @@
 <h2 class="view-title">@ViewBag.Title</h2>
 
 
-<div class="offset-2 col-xs-2">
-    @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-success" })
+<div class="row">
+    <p class="offset-md-2 col-md-2 text-center">
+        @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-success" })
+    </p>
+    <div class="col-md-8 text-left">
+        
+    </div>
 </div>
 
 <table class="table table-striped detailsShape">

@@ -1,5 +1,7 @@
 ﻿@{
-    ViewBag.Title = "Home";
+                /**/
+
+                ViewBag.Title = "Home";
 }
 
 <!-- ======= Hero Section ======= -->
@@ -25,77 +27,167 @@
 
 <main id="main">
     <!-- ======= Cta Section ======= -->
-    <section id="cta" class="cta">
-        <div class="container" data-aos="zoom-in">
+    @if (User.IsInRole("Admin"))
+    {
 
-            <div class="row">
-                <div class="col-lg-9 text-center text-lg-left">
-                    <h3>Call To Action</h3>
-                    <p> Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    }
+    else if (User.IsInRole("Manager"))
+    {
+        <section id="cta" class="cta">
+            <div class="container" data-aos="zoom-in">
+
+                <div class="row">
+                    <div class="col-lg-9 text-center text-lg-left">
+                        <h3>View Your Applicants</h3>
+                        <p> All applicants for open positions at your location are found on the Applications page in you Manager Tools. Be sure to make notes and update the status of the applications as you review them!</p>
+                    </div>
+                    <div class="col-lg-3 cta-btn-container text-center">
+                        <a class="cta-btn align-middle" href="@Url.Action("Index", "Applications")">Review Applications</a>
+                    </div>
                 </div>
-                <div class="col-lg-3 cta-btn-container text-center">
-                    <a class="cta-btn align-middle" href="#">Call To Action</a>
-                </div>
+
             </div>
+        </section><!-- End Cta Section -->
+    }
+    else if (User.IsInRole("Applicant"))
+    {
+        <section id="cta" class="cta">
+            <div class="container" data-aos="zoom-in">
 
-        </div>
-    </section><!-- End Cta Section -->
+                <div class="row">
+                    <div class="col-lg-9 text-center text-lg-left">
+                        <h3>Start Your Job Search!</h3>
+                        <p> Applicants can browse open positions at any of our locations across the Midwest. If you have uploaded a resume, you can start applying to positions right away! If you don't have a resume uploaded, you'll be redirected to the resume page if you attempt to apply for a job.</p>
+                    </div>
+                    <div class="col-lg-3 cta-btn-container text-center">
+                        <a class="cta-btn align-middle" href="@Url.Action("Index", "OpenPositions")">Browse Avaliable Positions</a>
+                    </div>
+                </div>
 
+            </div>
+        </section><!-- End Cta Section -->
+    }
+    else
+    {
+        <section id="cta" class="cta">
+            <div class="container" data-aos="zoom-in">
+
+                <div class="row">
+                    <div class="col-lg-9 text-center text-lg-left">
+                        <h3>Launch Your New Career Today!</h3>
+                        <p> New to Rocket Coffee Jobs? Welcome! Please make an account using the buttons above to begin your job search. If you already have an account, please log in to get started! If you have any questions, please contact our Administrator using the contact form provided.</p>
+                    </div>
+                    <div class="col-lg-3 cta-btn-container text-center">
+                        <a class="cta-btn align-middle" href="@Url.Action("Contact", "Home")">Contact Us</a>
+                    </div>
+                </div>
+
+            </div>
+        </section><!-- End Cta Section -->
+    }
     <!-- ======= Frequently Asked Questions Section ======= -->
     <section id="faq" class="faq section-bg">
         <div class="container" data-aos="fade-up">
 
             <div class="section-title">
                 <h2>Frequently Asked Questions</h2>
-                <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+                <p>Below are some of the more frequent questions we've received about our application. This list is filtered based on your user role, so be sure to log in to see questions tailored to your role. If you don't find the answer you're looking for, feel free to <a class="faq-link" href="@Url.Action("Contact", "Home")">contact our administrator</a> for further info!</p>
             </div>
 
             <div class="faq-list">
                 <ul>
                     <li data-aos="fade-up" data-aos-delay="100">
-                        <i class="bx bx-help-circle icon-help"></i> <a data-toggle="collapse" class="collapse" href="#faq-list-1">Non consectetur a erat nam at lectus urna duis? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                        <i class="bx bx-help-circle icon-help"></i> <a data-toggle="collapse" class="collapse" href="#faq-list-1">How many locations does Rocket Ship Coffee have? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
                         <div id="faq-list-1" class="collapse show" data-parent=".faq-list">
                             <p>
-                                Feugiat pretium nibh ipsum consequat. Tempus iaculis urna id volutpat lacus laoreet non curabitur gravida. Venenatis lectus magna fringilla urna porttitor rhoncus dolor purus non.
+                                Currently we have 6 cafe locations across the Midwest in Kansas City, Lawrence, Omaha, Columbia, St. Louis and Des Moines. The Kansas City Cafe is located inside our headquarters, and you'll usually find a wider variety of jobs available at HQ than at our cafes. For more information, <a href="@Url.Action("Index", "Locations")" class="faq-link">visit our locations page</a>.
                             </p>
                         </div>
                     </li>
 
                     <li data-aos="fade-up" data-aos-delay="200">
-                        <i class="bx bx-help-circle icon-help"></i> <a data-toggle="collapse" href="#faq-list-2" class="collapsed">Feugiat scelerisque varius morbi enim nunc? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                        <i class="bx bx-help-circle icon-help"></i> <a data-toggle="collapse" href="#faq-list-2" class="collapsed">Where can I find your products online? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
                         <div id="faq-list-2" class="collapse" data-parent=".faq-list">
                             <p>
-                                Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi. Id interdum velit laoreet id donec ultrices. Fringilla phasellus faucibus scelerisque eleifend donec pretium. Est pellentesque elit ullamcorper dignissim. Mauris ultrices eros in cursus turpis massa tincidunt dui.
+                                This application is specifically for finding jobs at our various locations. Visit the <a href="http://storefront.spencerpearson.net/Products" class="faq-link" target="_blank">Rocket Fuel Coffee website</a> to shop our selection of coffees, brewing equipment and other merchandise. You may also access <a href="http://storefront.spencerpearson.net/Products/Menu" class="faq-link" target="_blank">our cafe menu here</a>.
                             </p>
                         </div>
                     </li>
-
-                    <li data-aos="fade-up" data-aos-delay="300">
-                        <i class="bx bx-help-circle icon-help"></i> <a data-toggle="collapse" href="#faq-list-3" class="collapsed">Dolor sit amet consectetur adipiscing elit? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
-                        <div id="faq-list-3" class="collapse" data-parent=".faq-list">
-                            <p>
-                                Eleifend mi in nulla posuere sollicitudin aliquam ultrices sagittis orci. Faucibus pulvinar elementum integer enim. Sem nulla pharetra diam sit amet nisl suscipit. Rutrum tellus pellentesque eu tincidunt. Lectus urna duis convallis convallis tellus. Urna molestie at elementum eu facilisis sed odio morbi quis
-                            </p>
-                        </div>
-                    </li>
+                    @if (User.Identity.IsAuthenticated == false)
+                    {
+                        <li data-aos="fade-up" data-aos-delay="300">
+                            <i class="bx bx-help-circle icon-help"></i> <a data-toggle="collapse" href="#faq-list-3" class="collapsed">Are you currently hiring? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                            <div id="faq-list-3" class="collapse" data-parent=".faq-list">
+                                <p>
+                                    We are always looking for new talent in our various locations! To see what jobs we are hiring for right now, you'll first need to <a href="@Url.Action("Register", "Account")" class="faq-link">register an account</a> or <a href="@Url.Action("Login", "Account")" class="faq-link">log in to your existing account</a>.
+                                </p>
+                            </div>
+                        </li>
+                    }
 
                     <li data-aos="fade-up" data-aos-delay="400">
-                        <i class="bx bx-help-circle icon-help"></i> <a data-toggle="collapse" href="#faq-list-4" class="collapsed">Tempus quam pellentesque nec nam aliquam sem et tortor consequat? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                        <i class="bx bx-help-circle icon-help"></i> <a data-toggle="collapse" href="#faq-list-4" class="collapsed">What do I do if I forgot my password? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
                         <div id="faq-list-4" class="collapse" data-parent=".faq-list">
                             <p>
-                                Molestie a iaculis at erat pellentesque adipiscing commodo. Dignissim suspendisse in est ante in. Nunc vel risus commodo viverra maecenas accumsan. Sit amet nisl suscipit adipiscing bibendum est. Purus gravida quis blandit turpis cursus in.
+                                Your password can be reset by following simple instructions sent to the email address you signed up with. Visit the <a href="@Url.Action("ForgotPassword", "Account")" class="faq-link">forgot password page</a> for more information.
                             </p>
                         </div>
                     </li>
+                    @if (User.IsInRole("Applicant"))
+                    {
+                        <li data-aos="fade-up" data-aos-delay="500">
+                            <i class="bx bx-help-circle icon-help"></i> <a data-toggle="collapse" href="#faq-list-5" class="collapsed">Can I apply for a position in a city I don't live in? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                            <div id="faq-list-5" class="collapse" data-parent=".faq-list">
+                                <p>
+                                    Applicants can apply for any open position they feel qualified for at any of our locations. Please note that if you apply for a position in another city, the hiring manager will discuss your willingness and ability to relocate for work. If you are willing to relocate, we are willing to consider you for our team!
+                                </p>
+                            </div>
+                        </li>
+                        <li data-aos="fade-up" data-aos-delay="600">
+                            <i class="bx bx-help-circle icon-help"></i> <a data-toggle="collapse" href="#faq-list-6" class="collapsed">I applied for a position. When should I follow up with the hiring manager? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                            <div id="faq-list-6" class="collapse" data-parent=".faq-list">
+                                <p>
+                                    Our hiring managers review applications as quickly as they can, and typically they will accept or reject an application in 3 to 5 business days. If you applied and haven't received any messages for a week, check your spam folder before sending an email to our administrator via our <a href="@Url.Action("Contact", "Home")" class="faq-link">contact form</a>.
+                                </p>
+                            </div>
+                        </li>
+                    }
+                    @if (User.IsInRole("Manager"))
+                    {
+                        <li data-aos="fade-up" data-aos-delay="500">
+                            <i class="bx bx-help-circle icon-help"></i> <a data-toggle="collapse" href="#faq-list-5" class="collapsed">I'm a hiring manager for my location. Can I apply for an opening at a new location? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                            <div id="faq-list-5" class="collapse" data-parent=".faq-list">
+                                <p>
+                                    Managers can apply for any open position just like applicants. If you are considering a transfer, please be sure to give as much notice to your supervisor so we can help you transition smoothly into your new role.
+                                </p>
+                            </div>
+                        </li>
+                        <li data-aos="fade-up" data-aos-delay="600">
+                            <i class="bx bx-help-circle icon-help"></i> <a data-toggle="collapse" href="#faq-list-6" class="collapsed">Can I apply for a position in a city I don't live in? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                            <div id="faq-list-6" class="collapse" data-parent=".faq-list">
+                                <p>
+                                    Managers can apply for any open position they feel qualified for at any of our locations. Please note that if you apply for a position in another city, the hiring manager will discuss your willingness and ability to relocate for work. If you are willing to relocate, we are willing to consider your transfer!
+                                </p>
+                            </div>
+                        </li>
+                        <li data-aos="fade-up" data-aos-delay="700">
+                            <i class="bx bx-help-circle icon-help"></i> <a data-toggle="collapse" href="#faq-list-7" class="collapsed">I was hired as a manager at my location. Why can't I access any submitted applications? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                            <div id="faq-list-7" class="collapse" data-parent=".faq-list">
+                                <p>
+                                    All user roles are managed by our administrator. By default, accounts are registered under the "Applicant" role. If you have been recently hired or propoted to the Manager position, please <a href="@Url.Action("Contact", "Index")" class="faq-link">contact the administrator</a> to have your user role updated.
+                                </p>
+                            </div>
+                        </li>
+                        <li data-aos="fade-up" data-aos-delay="800">
+                            <i class="bx bx-help-circle icon-help"></i> <a data-toggle="collapse" href="#faq-list-8" class="collapsed">How do I start hiring for a new position at my location? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                            <div id="faq-list-8" class="collapse" data-parent=".faq-list">
+                                <p>
+                                    To allow Applicants to apply for a job at your store, first navigate to the <a href="@Url.Action("Index", "OpenPositions")" class="faq-link">Open Positions page</a> and click "Create New." Simply select the position you are hiring for and your store location, then click "Create." If you are hiring for a position that is not listed in the dropdown menu, you will have to navigate to the <a href="@Url.Action("Index", "Positions")" class="faq-link">Positions page</a>, then click "Create New" and provide a Job Title and Description for the new position you wish to hire for. After clicking "Create," you'll be about to select the new position on the Open Positions form.
+                                </p>
+                            </div>
+                        </li>
+                    }
 
-                    <li data-aos="fade-up" data-aos-delay="500">
-                        <i class="bx bx-help-circle icon-help"></i> <a data-toggle="collapse" href="#faq-list-5" class="collapsed">Tortor vitae purus faucibus ornare. Varius vel pharetra vel turpis nunc eget lorem dolor? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
-                        <div id="faq-list-5" class="collapse" data-parent=".faq-list">
-                            <p>
-                                Laoreet sit amet cursus sit amet dictum sit amet justo. Mauris vitae ultricies leo integer malesuada nunc vel. Tincidunt eget nullam non nisi est sit amet. Turpis nunc eget lorem dolor sed. Ut venenatis tellus in metus vulputate eu scelerisque.
-                            </p>
-                        </div>
-                    </li>
 
                 </ul>
             </div>

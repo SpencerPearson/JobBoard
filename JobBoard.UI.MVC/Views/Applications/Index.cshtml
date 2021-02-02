@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<JobBoard.Data.EF.Application>
 
 @{
-    ViewBag.Title = " Submitted Applications";
+    ViewBag.Title = "Submitted Applications";
 }
 <br />
 <h2 class="view-title">@ViewBag.Title</h2>
@@ -59,7 +59,7 @@
                 @Html.DisplayFor(modelItem => item.ApplicationStatus1.StatusName)
             </td>
             <td class="text-right">
-                @if (User.IsInRole("Admin") || User.IsInRole("Application"))
+                @if (User.IsInRole("Admin") || User.IsInRole("Manager"))
                 {
                     <a href="@Url.Action("Edit", "Applications", new { id = item.ApplicationId })">
                         <i class="icofont-edit" aria-hidden="true"></i>

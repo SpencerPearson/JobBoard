@@ -16,7 +16,7 @@ namespace JobBoard.UI.MVC.Controllers
         private JobBoardEntities db = new JobBoardEntities();
 
         // GET: OpenPositions
-        [Authorize(Roles = "Admin, Manager")]
+        [Authorize(Roles = "Admin, Manager, Applicant")]
         public ActionResult Index(string cityFilter)
         {
             ViewBag.CityFilter = new SelectList(db.OpenPositions.Select(x => x.Location.City).Distinct());
@@ -35,7 +35,7 @@ namespace JobBoard.UI.MVC.Controllers
         }
 
         // GET: OpenPositions/Details/5
-        [Authorize(Roles = "Admin, Manager")]
+        [Authorize(Roles = "Admin, Manager, Applicant")]
         public ActionResult Details(int? id)
         {
             if (id == null)

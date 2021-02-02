@@ -1288,6 +1288,10 @@ section {
         .faq .faq-list a.collapsed .icon-close {
             display: none;
         }
+.faq-link {
+    display: inline !important;
+    padding: 0 !important;
+}
 
 @media (max-width: 1200px) {
     .faq .faq-list {
