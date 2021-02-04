@@ -2015,3 +2015,24 @@ hr.white-hr {
         padding: .5em;
     }
 }
+
+#resources li {
+    padding-top: 1em;
+}
+#resources a {
+    color: #fff;
+    text-decoration: underline;
+    font-size: 1.5em;
+}
+#resources i {
+    font-size: 3em;
+}
+@media (max-width: 785px) {
+    #resources a {
+        font-size: 1em;
+    }
+
+    #resources i {
+        font-size: 1.5em;
+    }
+}

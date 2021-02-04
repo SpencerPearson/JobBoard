@@ -65,4 +65,20 @@ else
         </div>
     </div>
 </div>
-
+<br />
+@if (Model.ResumeFileName == "NoResume.pdf")
+{
+<div id="resources" class="container detailsShape">
+        <h2 class="view-title">Resume Resources</h2>
+    <p>
+        Need help putting together your resume? We've put together a useful set of links below to aid you in creating that perfect resume to launch your new career!
+    </p>
+    <ul>
+        <li><i class="icofont-file-alt"></i> <a href="https://www.indeed.com/career-advice/resume-samples" target="_blank">Resume Samples from Indeed</a></li>
+        <li><i class="icofont-file-alt"></i> <a href="https://www.linkedin.com/resume-maker-web/editor" target="_blank">Resume Builder tool from LinkedIn</a></li>
+        <li><i class="icofont-file-alt"></i> <a href="https://ocs.fas.harvard.edu/files/ocs/files/hes-resume-cover-letter-guide.pdf" target="_blank">Resume Document from University of Harvard's Office of Career Services</a></li>
+        <li><i class="icofont-file-alt"></i> <a href="https://careercenter.umich.edu/article/resume-resources" target="_blank">Resume Resources from University of Michigan's Career Center</a></li>
+        <li><i class="icofont-file-alt"></i> <a href="https://cla.umn.edu/career-services-office/students/excel/resume" target="_blank">Resume Page at University of Minnesota Career Services</a></li>
+    </ul>
+</div>
+}

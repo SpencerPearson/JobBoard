@@ -10,62 +10,76 @@
 <br />
 <div class="row">
     <p class="offset-md-2 col-md-2 text-center">
-        @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-success" })
+        @if (User.IsInRole("Admin") || User.IsInRole("Manager"))
+        {
+
+            @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-success" })
+
+        }
     </p>
-    <div class="col-md-8 text-left">
-        <form method="get" action="/OpenPositions/Index" class="form-horizontal">
-            <div class="row">
-                <div class="col-md-2 text-right">
-                    <label for="cityFilter">Filter by City:</label>
+        <div class="col-md-8 text-left">
+            <form method="get" action="/OpenPositions/Index" class="form-horizontal">
+                <div class="row">
+                    <div class="col-md-2 text-right">
+                        <label for="cityFilter">Filter by City:</label>
+                    </div>
+                    <div class="col-md-4">
+                        @Html.DropDownList("CityFilter", null, "(Show All)", htmlAttributes: new { @class = "form-control" })
+                    </div>
+                    <div class="col-md-3">
+                        <input type="submit" value="Filter" class="btn btn-orange" />
+                    </div>
                 </div>
-                <div class="col-md-4">
-                    @Html.DropDownList("CityFilter", null, "(Show All)", htmlAttributes: new { @class = "form-control" })
-                </div>
-                <div class="col-md-3">
-                    <input type="submit" value="Filter" class="btn btn-orange" />
-                </div>
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
-</div>
 
 <table class="table table-striped detailsShape">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Location.StoreNumber)
         </th>
-        <th>        
-                @Html.DisplayNameFor(model => model.Position.Title)
+        <th>
+            @Html.DisplayNameFor(model => model.Position.Title)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Location.City)
         </th>
-        <th class="text-right">Edit | Delete</th>
+        @if (User.IsInRole("Admin") || User.IsInRole("Manager"))
+        {
+            <th class="text-right">Edit | Delete</th>
+        }
+
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Location.StoreNumber)
-        </td>
-        <td class="style-link">
-            <a href="@Url.Action("Details", "OpenPositions", new { id = item.OpenPositionId })">
-                @Html.DisplayFor(modelItem => item.Position.Title)
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Location.StoreNumber)
+            </td>
+            <td class="style-link">
+                <a href="@Url.Action("Details", "OpenPositions", new { id = item.OpenPositionId })">
+                    @Html.DisplayFor(modelItem => item.Position.Title)
                 </a>
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Location.City)
-        </td>
-        <td class="text-right">
-            <a href="@Url.Action("Edit", "OpenPositions", new { id = item.OpenPositionId })">
-                <i class="icofont-edit" aria-hidden="true"></i>
-            </a>
-            
-            <a href="@Url.Action("Delete", "OpenPositions", new { id = item.OpenPositionId })">
-                <i class="icofont-bin" aria-hidden="true"></i>
-            </a>
-        </td>
-    </tr>
-}
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Location.City)
+            </td>
+            @if (User.IsInRole("Admin") || User.IsInRole("Manager"))
+            {
+                <td class="text-right">
+                    <a href="@Url.Action("Edit", "OpenPositions", new { id = item.OpenPositionId })">
+                        <i class="icofont-edit" aria-hidden="true"></i>
+                    </a>
+
+                    <a href="@Url.Action("Delete", "OpenPositions", new { id = item.OpenPositionId })">
+                        <i class="icofont-bin" aria-hidden="true"></i>
+                    </a>
+
+                </td>
+            }
+        </tr>
+    }
 
 </table>

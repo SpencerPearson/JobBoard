@@ -13,9 +13,12 @@
                 <h1>Launch A New Career!</h1>
                 <h2>We are team of coffee professionals who are passionate about people, quality, and great-tasting coffee. Come join us!</h2>
                 <div class="d-lg-flex">
-                    <a href="@Url.Action("Register", "Account")" class="btn-get-started-green scrollto">Sign Up</a> &ensp;
-                    <a href="@Url.Action("Login", "Account")" class="btn-get-started scrollto">Log In</a>
-                </div>
+                    @if (User.Identity.IsAuthenticated == false)
+                    {
+                        <a href="@Url.Action("Register", "Account")" class="btn-get-started-green scrollto">Sign Up</a> @:&ensp;
+                        <a href="@Url.Action("Login", "Account")" class="btn-get-started scrollto">Log In</a>
+                    }
+                    </div>
             </div>
             <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="zoom-in" data-aos-delay="200">
                 <img src="~/Content/img/Rocket-Fuel-Coffee-white.png" class="img-fluid animated" alt="Rocket Fuel Coffee logo">
@@ -35,17 +38,16 @@
     {
         <section id="cta" class="cta">
             <div class="container" data-aos="zoom-in">
-
                 <div class="row">
                     <div class="col-lg-9 text-center text-lg-left">
                         <h3>View Your Applicants</h3>
-                        <p> All applicants for open positions at your location are found on the Applications page in you Manager Tools. Be sure to make notes and update the status of the applications as you review them!</p>
+                        <p> All applicants for open positions at your location are found on the Applications page in you Manager Tools. Be sure to make notes and update the status of the applications as you review them!
+                        </p>
                     </div>
                     <div class="col-lg-3 cta-btn-container text-center">
                         <a class="cta-btn align-middle" href="@Url.Action("Index", "Applications")">Review Applications</a>
                     </div>
                 </div>
-
             </div>
         </section><!-- End Cta Section -->
     }
@@ -53,7 +55,6 @@
     {
         <section id="cta" class="cta">
             <div class="container" data-aos="zoom-in">
-
                 <div class="row">
                     <div class="col-lg-9 text-center text-lg-left">
                         <h3>Start Your Job Search!</h3>

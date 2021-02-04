@@ -117,10 +117,11 @@
                     <div class="col-lg-3 col-md-6 footer-links">
                         <h4>Useful Links</h4>
                         <ul>
-                            <li><i class="bx bx-chevron-right"></i> <a href="@Url.Action("Index", "Home")">Home</a></li>
+
                             <li><i class="bx bx-chevron-right"></i> <a href="@Url.Action("About", "Home")">About Rocket Fuel Jobs</a></li>
                             <li><i class="bx bx-chevron-right"></i> <a href="@Url.Action("Index", "Locations")">Locations</a></li>
                             <li><i class="bx bx-chevron-right"></i> <a href="@Url.Action("Contact", "Home")">Contact us</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="@Url.Content("~/Content/SpencerPearsonDocumentation.pdf")" target="_blank">Project Documentation</a></li>
                         </ul>
                     </div>
 
@@ -182,8 +183,6 @@
 
     <!-- Template Main JS File -->
     <script src="~/Content/js/main.js"></script>
-
-    //loop through all of the navigation and locate an HREF value of an ANCHOR tag //thatmatches thebrowserURL.If they match, apply our selected class to theLI.
     <script>
         $('.nav-menu ul li').each(function () {
             if ($(this).find('a').attr('href') == window.location.pathname) {
