@@ -84,7 +84,7 @@ namespace JobBoard.UI.MVC.Controllers
                     users.Add(user);
                 }
             }
-
+            //pull in associated UserDetails to access the FullName custom property
             List<UserDetail> managers = new List<UserDetail>();
             foreach (var user in users)
             {

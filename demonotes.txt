@@ -1,0 +1,42 @@
+Contact/Documentation
+
+Anonymous:
+
+CTA/FAQ
+About
+Locations
+Contact
+Login ->
+
+Applicant:
+
+CTA/FAQ: How long do I wait?
+Jobs -> filter by location
+One-click apply -> no resume
+Resume -> resources
+Upload resume
+Resume view changes
+Jobs -> can apply
+Double-check that application in My Account -> Applications
+Log out, log in KC Sunshine
+
+
+Manager:
+
+CTA/FAQ: How do I hire?
+Applications -> Accept, email is generated in bg
+If I try to delete, it tells me to wait 6 months.
+Managers can also apply for jobs.
+Manager Tools
+Log out, log in spencerpearson.net
+
+Admin:
+
+CTA/FAQ: Gone for admin
+Admin tools
+Admin can delete before 6 month period
+Admin can make new locations, can CRUD App Status and User Details
+
+end with the email received.
+
+Again I'll refer you to the documentation in the footer for more details, and if you have any questions feel free to send me a message on this contact page!
